@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>2015_8_11_homework</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link href="" rel="stylesheet">
+    <style type="text/css">
+
+    html, body {
+		margin: 0;
+		padding: 0;
+	}
+
+    table,tr,td,fieldset{
+    	border-color: #0080ff;
+    }
+
+    td{ 
+    	font-family: "楷体";
+    	color: #0080ff;
+    }
+
+    span{ 
+    	font:35px;
+    	color: #0080ff;
+    }
+
+    #hpic input{ 
+    	font-family: "楷体";
+    }
+   
+    #btn input{ 
+    	background-color: #4080c0;
+    	border-radius: 8px;
+    	margin-left: 40px;
+    	font-family: "楷体";
+    }
+
+	#btn input:hover{
+	    background: #0080ff;
+	}
+
+	#btn input:active,
+	#btn input:focus{
+	    background: #0040ff;
+	    outline: 0;
+	}
+
+	#fs{ 
+       background-attachment: fixed;
+       background-position: 50% 50%;
+	   background-size: cover;
+	   background-image: url(blue-background-3.jpg);
+	}
+
+    </style>
+
+
+</head>
+<body>
+	<fieldset id="fs">
+		<legend id="lgd"><span>用户注册</span></legend>
+		<form action="" method="post" onsubmit="return checkAll()">
+			<h3 align="center"><span>新用户注册</span></h3>
+			<table border="1px" align="center" cellspacing="0" width="500" height="200">
+				<tr align="center">
+					<td>用户名：</td>
+					<td id="user">
+						<input type="text" name="userName" onblur="checkName()" />
+						<span id="userSpan"></span>
+					</td>
+				</tr>
+
+				<tr align="center">
+					<td>密码：</td>
+					<td id="userPwd">
+						<input type="password" name="pwd" onblur="checkPwd()" />
+						<span id="pwdSpan"></span>
+					</td>
+				</tr>
+
+				<tr align="center">
+					<td>邮箱:</td>
+					<td id="userMail">
+						<input type="text" name="mail" onblur="checkMail()" />
+						<span id="mailSpan"></span>
+					</td>
+				</tr>
+
+				<tr align="center">
+					<td>性别：</td>
+					<td>
+						<input type="radio" name="gender" value="male">
+						男
+						<input type="radio" name="gender" value="female">女</td>
+				</tr>
+
+				<tr align="center">
+					<td>爱好：</td>
+					<td>
+						<input type="checkbox" name="hobby" value="eat"/>
+						吃饭
+						<input type="checkbox" name="hobby" value="sleep"/>
+						睡觉
+						<input type="checkbox" name="hobby" value="game"/>
+						玩游戏
+					</td>
+				</tr>
+
+				<tr align="center">
+					<td>城市：</td>
+					<td>
+						<select>
+							<option>请选择城市</option>
+							<option name="city" value="gz">广州</option>
+							<option name="city" value="zh">珠海</option>
+							<option name="city" value="zs">中山</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr align="center">
+					<td>头像:</td>
+					<td id="hpic">
+						<input type="file" value="选择文件" />
+					</td>
+				</tr>
+
+				<tr>
+					<td id="btn" align="center" colspan="2">
+						<input type="submit" value="确认"/>
+						<input type="reset" value="取消"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</body>
+
+<!--blur="" 当光标不在输入框内的时候，调用某个js的函数. -->
+    <script type="text/javascript">
+
+    //用户名： 4-12位字母或数字或下划线（不分大小写）
+        function checkName()
+        { 
+        	// 获取用户名的input对象
+        	var sUserName = document.getElementsByName("userName")[0].value;
+        	var userSpan = document.getElementById("userSpan");
+        	// 1.字母或数字或下划线: [a-z] 或者 \w 2.6-12位:[a-z]{6,12} 
+        	var regExp = new RegExp("^\\w{6,12}$");
+        	if (!regExp.test(sUserName)) 
+        	{ 
+        		//alert("用户名格式错误！！");
+        		userSpan.innerHTML = "用户名格式错误！！".fontcolor("red");
+        		return false;
+        	}
+        	else
+        	{ 
+        		//alert("用户名格式正确！");
+        		userSpan.innerHTML = "用户名格式正确！".fontcolor("green");
+        		return true;
+        	}
+        }
+
+     // 密码：   6-16位数字
+        function checkPwd()
+        { 
+        	var sPwd = document.getElementsByName("pwd")[0].value;
+        	var pwdSpan = document.getElementById("pwdSpan");
+
+        	var regExp = new RegExp("^[0-9]{6,}$");
+        	if (!regExp.test(sPwd)) 
+        	{ 
+        		//alert("用户名格式错误！！");
+        		pwdSpan.innerHTML = "密码格式错误！！".fontcolor("red");
+        		return false;
+        	}
+        	else
+        	{ 
+        		//alert("用户名格式正确！");
+        		pwdSpan.innerHTML = "密码格式正确！".fontcolor("green");
+        		return true;
+        	}
+        }
+	//邮箱:至少2位字母或数字或下划线@至少2位字母或数字.2-3位字母(.2-3位字母)(可选)
+        function checkMail()
+        { 
+        	var sMail = document.getElementsByName("mail")[0].value;
+        	var mailSpan = document.getElementById("mailSpan");
+        	var regExp = new RegExp("^\\w{2,}@[a-z0-9]\.([a-z]{1,2})$");
+    	  	//var regExp = new RegExp("^[0-9]{6,}$");
+    		if (!regExp.test(sMail)) 
+        	{ 
+        		//alert("邮箱格式错误！！");
+        		mailSpan.innerHTML = "邮箱格式错误！！".fontcolor("red");
+        		return false;
+        	}
+        	else
+        	{ 
+        		//alert("邮箱格式正确！");
+        		mailSpan.innerHTML = "邮箱格式正确！".fontcolor("green");
+        		return true;
+        	}
+        }
+
+        // 检查完所有的表单内容才允许用户提交.
+        function checkAll()
+        { 
+        	if(checkName() && checkMail && checkPwd())
+        	{ 
+        		return true;
+        	}
+        	else
+        	{ 
+        		return false;
+        	}
+
+        }
+    </script>
+</html>
