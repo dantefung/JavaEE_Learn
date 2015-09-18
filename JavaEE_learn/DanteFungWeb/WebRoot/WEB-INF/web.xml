@@ -5,9 +5,64 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name></display-name>
+
+  <!-- 注册过滤器 -->
+   <filter>
+      <filter-name>GZIPFilter</filter-name>
+      <filter-class>com.dantefung.filter_gzip.GZIPFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  		<filter-name>GZIPFilter</filter-name>
+  		<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+      <filter-name>SecurityFilter</filter-name>
+      <filter-class>com.dantefung.filter_sercurity.SecurityFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  		<filter-name>SecurityFilter</filter-name>
+  		<url-pattern>/MyIndex.jsp</url-pattern>
+  		<url-pattern>/filter/userpass.jsp</url-pattern>
+  </filter-mapping>
+  
+   <filter>
+      <filter-name>EncodingFilter</filter-name>
+      <filter-class>com.dantefung.filter_encoding.EncodingFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  		<filter-name>EncodingFilter</filter-name>
+  		<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 注册监听器 -->
+ <!-- <listener>
+  	<listener-class>com.dantefung.servletcontextlistener.MyServletContextListener</listener-class>
+  </listener>   --> 
+  
+    
+  <listener>
+  	<listener-class>com.dantefung.online.OnlineListener</listener-class>
+  </listener>
+  
+  
+  
+  <!--说的好听点叫，在web.xml里注册.通俗点讲就是登记信息，以后有问题找你方便.  -->
+  
   <servlet>
+     <!-- servlet的内部友好名称,方便用于解析  -->
     <servlet-name>ServletDemo1</servlet-name>
+    <!--  具体的servlet类-->
     <servlet-class>com.adantefung.servlet.ServletDemo1</servlet-class>
+  </servlet>
+    <servlet>
+     <!-- servlet的内部友好名称,方便用于解析  -->
+    <servlet-name>ContentGZIPServlet</servlet-name>
+    <!--  具体的servlet类-->
+    <servlet-class>com.dantefung.filter_gzip.ContentGZIPServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ServletLifeCircle</servlet-name>
@@ -17,11 +72,185 @@
     <servlet-name>ServletDemo3</servlet-name>
     <servlet-class>com.adantefung.servlet.ServletDemo3</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ServletDemo4</servlet-name>
+    <servlet-class>com.adantefung.servlet.ServletDemo4</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletConfigDemo5</servlet-name>
+    <servlet-class>com.adantefung.servlet.ServletConfigDemo5</servlet-class>
+  
+  	<!-- servlet的初始化参数设定 ,之后将由ServletConfig获取 -->
+	<init-param>
+		<param-name>path</param-name>
+		<param-value>c:/news2.txt</param-value>
+	</init-param>
+  
+  </servlet>
+   <servlet>
+    <servlet-name>GZIPServlet</servlet-name>
+    <servlet-class>com.dantefung.filter_gzip.GZIPServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletContextDemo6</servlet-name>
+    <servlet-class>com.adantefung.servlet.ServletContextDemo6</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletDemo10</servlet-name>
+    <servlet-class>com.adantefung.servlet.ServletDemo10</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddServlet</servlet-name>
+    <servlet-class>com.adantefung.example.AddServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StudentServlet</servlet-name>
+    <servlet-class>com.adantefung.example.StudentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SolveEncodingProblem</servlet-name>
+    <servlet-class>com.adantefung.encoding.SolveEncodingProblem</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RefreshDemo</servlet-name>
+    <servlet-class>com.adantefung.redirect_dispatcher.RefreshDemo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RedirectDemo</servlet-name>
+    <servlet-class>com.adantefung.redirect_dispatcher.RedirectDemo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BeanUtilsDemo</servlet-name>
+    <servlet-class>com.adantefung.beanutils.BeanUtilsDemo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginUIServlet</servlet-name>
+    <servlet-class>com.adantefung.cookies_app1.LoginUIServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.adantefung.cookies_app1.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LastAccessTimeDemo</servlet-name>
+    <servlet-class>com.adantefung.cookies_app2.LastAccessTimeDemo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ClearCookie</servlet-name>
+    <servlet-class>com.adantefung.cookies_app2.ClearCookie</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HistoryDemo</servlet-name>
+    <servlet-class>com.adantefung.cookies_app3.HistoryDemo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HistoryUIDemo</servlet-name>
+    <servlet-class>com.adantefung.cookies_app3.HistoryUIDemo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BookShopUI</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app2.BookShopUI</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddCart</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app2.AddCart</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowProInCart</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app2.ShowProInCart</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ImageServlet</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app1.ImageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginUIServlet2</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app1.LoginUIServlet2</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app1.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app1.IndexServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginServlet2</servlet-name>
+    <servlet-class>com.adantefung.httpsession_app1.LoginServlet2</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GuessServlet</servlet-name>
+    <servlet-class>com.dantefung.game.GuessServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SecurityServlet</servlet-name>
+    <servlet-class>com.dantefung.filter_sercurity.SecurityServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TargetServlet</servlet-name>
+    <servlet-class>com.dantefung.filter_encoding.TargetServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>OnlineServlet</servlet-name>
+    <servlet-class>com.dantefung.online.OnlineServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>MyLogoutServlet</servlet-name>
+    <servlet-class>com.dantefung.online.MyLogoutServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.dantefung.upload.UploadServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  	<!-- 全局参数 -->
+	<context-param>
+		<param-name>encoding</param-name>
+		<param-value>utf-8</param-value>
+	</context-param>
+	<context-param>
+		<param-name>xxx</param-name>
+		<param-value>xxx's value</param-value>
+	</context-param>
+	
+
 
 
 
   <servlet-mapping>
+     <!-- 内部对servlet友好名称  -->
     <servlet-name>ServletDemo1</servlet-name>
+    <!-- 对外访问的路径，/代表web应用目录下 ，根据内部友好名称映射到具体的servlet类-->
     <url-pattern>/demo1</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
@@ -31,8 +260,144 @@
   <servlet-mapping>
     <servlet-name>ServletDemo3</servlet-name>
     <url-pattern>/demo3</url-pattern>
-  </servlet-mapping>	
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletDemo4</servlet-name>
+    <url-pattern>/demo4</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletConfigDemo5</servlet-name>
+    <url-pattern>/demo5</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletContextDemo6</servlet-name>
+    <url-pattern>/demo6</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletDemo10</servlet-name>
+    <url-pattern>/demo10</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentServlet</servlet-name>
+    <url-pattern>/student</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SolveEncodingProblem</servlet-name>
+    <url-pattern>/SolveEncodingProblem</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RefreshDemo</servlet-name>
+    <url-pattern>/RefreshDemo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RedirectDemo</servlet-name>
+    <url-pattern>/RedirectDemo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BeanUtilsDemo</servlet-name>
+    <url-pattern>/BeanUtilsDemo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginUIServlet</servlet-name>
+    <url-pattern>/LoginUIServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LastAccessTimeDemo</servlet-name>
+    <url-pattern>/LastAccessTimeDemo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ClearCookie</servlet-name>
+    <url-pattern>/ClearCookie</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HistoryDemo</servlet-name>
+    <url-pattern>/HistoryDemo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HistoryUIDemo</servlet-name>
+    <url-pattern>/HistoryUIDemo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BookShopUI</servlet-name>
+    <url-pattern>/BookShopUI</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddCart</servlet-name>
+    <url-pattern>/AddCart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowProInCart</servlet-name>
+    <url-pattern>/ShowProInCart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ImageServlet</servlet-name>
+    <url-pattern>/ImageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginUIServlet2</servlet-name>
+    <url-pattern>/LoginUIServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/IndexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet2</servlet-name>
+    <url-pattern>/LoginServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GuessServlet</servlet-name>
+    <url-pattern>/GuessServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>SecurityServlet</servlet-name>
+    <url-pattern>/SecurityServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TargetServlet</servlet-name>
+    <url-pattern>/TargetServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OnlineServlet</servlet-name>
+    <url-pattern>/OnlineServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MyLogoutServlet</servlet-name>
+    <url-pattern>/MyLogoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GZIPServlet</servlet-name>
+    <url-pattern>/GZIPServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>ContentGZIPServlet</servlet-name>
+    <url-pattern>/ContentGZIPServlet</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+    <servlet>
+        <servlet-name>DownServlet</servlet-name>
+        <servlet-class>com.dantefung.down.DownServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownServlet</servlet-name>
+        <url-pattern>/DownServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

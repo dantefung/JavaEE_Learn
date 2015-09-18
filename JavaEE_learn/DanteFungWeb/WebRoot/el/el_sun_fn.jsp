@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -65,4 +65,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="checkbox" name="likes" value="basketball" ${fn:contains(fn:join(likes,","),"basketball")?'checked':'' }>À¶Çò
     <input type="checkbox" name="likes" value="football" ${fn:contains(fn:join(likes,","),"football")?'checked':'' }>×ãÇò  </body>
 </html>
- --%>

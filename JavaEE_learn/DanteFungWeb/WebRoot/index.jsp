@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@taglib uri="http://www.dantefung.com/simple" prefix="simple"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,6 +22,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+    <h3>ÓÃ»§Ö÷Ò³</h3> <br>
+    <h3/>
+    <form action="#" method="post"> 
+  		<simple:login username="username" 
+						password="password" />
+  	 </form>
+    	
   </body>
 </html>

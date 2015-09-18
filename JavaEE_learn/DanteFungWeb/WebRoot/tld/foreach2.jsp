@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/example" prefix="cc" %>
 <%
 String path = request.getContextPath();
