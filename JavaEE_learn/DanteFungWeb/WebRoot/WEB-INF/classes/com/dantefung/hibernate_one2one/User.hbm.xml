@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	<hibernate-mapping package="com.dantefung.hibernate_one2one">
+	    <class name="User" table="user">
+	    	<id name="id" column="id" type="int">
+	    	    <generator class="native"></generator>
+	    	</id>
+	    	
+	    	<property name="name" column="uname" type="string" ></property>
+	    	<property name="sex" column="sex" type="character" ></property>
+	    	<property name="birth" column="birth" type="date"></property>
+	    	
+	    	<!-- 
+	    		一对一；无外键方
+	    	 -->
+	    	 <one-to-one name="card" class="Card"></one-to-one>
+	    	 <!-- name : 对象属性  class ： 对应的类 -->
+	    </class>
+	</hibernate-mapping>

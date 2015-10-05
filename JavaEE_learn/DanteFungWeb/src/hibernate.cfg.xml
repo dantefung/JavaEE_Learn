@@ -1,0 +1,92 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+	    <!-- 1.数据库连接信息 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>	
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>	
+		<property name="hibernate.connection.url">jdbc:mysql:///hibernatedemo?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8</property>	
+		<property name="hibernate.connection.username">root</property>	
+		<property name="hibernate.connection.password">root</property>	
+		
+		<!-- 2.常用配置 -->
+		<!-- 2.1显示hibernate在运行时生成的sql -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 2.2格式化sql语句 -->
+		<property name="format_sql"></property>
+		<!-- 2.3自动建表 -->
+<!-- 		<property name="hibernate.hbm2ddl.auto">create</property> -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<!--3.连接池配置  -->
+		<property name="hibernate.c3p0.min_size">3</property>
+		<property name="hibernate.c3p0.max_size">6</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.max_statements">10</property>
+		<property name="hibernate.c3p0.timeout">3000</property>
+		<property name="hibernate.c3p0.acquire_increment">1</property>
+		
+		
+		<!--配置session的创建方式  -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		
+		<!-- 开启查询缓存 -->
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <!-- 开启二级缓存 -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!-- 指定 hibernate 默认支持的二级缓存框架：HashtableCacheProvider-->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+		
+		<!-- 加载所有的映射 -->
+		<mapping resource="com/dantefung/hibernate_entity/category.hbm.xml"></mapping>
+		<!-- 注意：不能写  "." 要写"/" -->
+		<mapping resource="com/dantefung/hibernate_entity/Admin.hbm.xml"></mapping>
+		<mapping resource="com/dantefung/hibernate_entity/Article.hbm.xml"></mapping>
+		<mapping resource="com/dantefung/hibernate_entity/Comments.hbm.xml"></mapping>
+		<mapping resource="com/dantefung/hibernate_entity/Label.hbm.xml"></mapping>
+		<mapping resource="com/dantefung/hibernate_extends/Animal.hbm.xml"></mapping>
+		
+		
+		<!-- 开启二级缓存 -->
+		<!--  
+			4.二级缓存的相关配置
+			4.1开启二级缓存
+			4.2指定用哪种二级缓存框架的实现
+			        hibernate 默认支持的二级缓存框架：HashtableCacheProvider
+			4.3指定哪些类加入二级缓存（常用、且不会被经常修改！！）
+			
+			问题一：如何把一个类加入二级缓存？
+			方式一：在hibernate.cfg.xml中配置（推荐）
+			方式二：*.hbm.xml中加入<cache usage="read-only"/>
+			
+			问题二：缓存策略值？
+			usage="read-only" 只读（加入二级缓存的类是只读状态）
+			read-write  读写
+			nonstrict-read-write  非严格的读写（效率高于上面两种）
+			transactional  基于事务的策略
+			
+			问题三：查询缓存如何使用？
+			1）开启查询缓存 ： hibernate.cache.use_query_cache  设置为true
+			2)代码中使用hql的时候，指定结果放入二级缓存或默认二级缓存中取
+			
+			query setCacheable(true)
+		-->
+		
+		<!-- 把一个类加入二级缓存 -->
+	<!-- <class-cache usage="read-only" class=""/> -->	
+		<!-- 集合缓存配置 -->
+	<!-- <collection-cache usage="read-only" collection=""/> -->	
+		
+		
+		
+	</session-factory>
+</hibernate-configuration>
+
+
+
+
+
+

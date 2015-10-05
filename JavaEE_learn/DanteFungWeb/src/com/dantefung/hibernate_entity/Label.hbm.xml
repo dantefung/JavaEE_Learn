@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.dantefung.hibernate_entity">
+
+	<class name="Label" table="label">
+	<!-- 主键映射 -->
+		<id name="id">
+			<generator class="assigned"></generator>
+		</id>
+		
+		<!-- 其它字段映射 -->
+		<!--  
+			name:实体类的属性名
+			column：数据库中的字段名
+			type:类型  
+			     java类型：写上类的全名
+			     hibernate类型： 如： string
+		-->
+		<property name="lname" column="lname" type="string"></property>
+	</class>
+
+</hibernate-mapping>

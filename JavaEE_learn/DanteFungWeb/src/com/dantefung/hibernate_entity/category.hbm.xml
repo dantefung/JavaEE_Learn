@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.dantefung.hibernate_entity">
+
+	<class name="Category" table="category">
+	<!-- 主键映射 -->
+		<id name="cid">
+			<!-- 自增长  -->
+			<!-- <generator class="native"></generator>  -->
+			<!-- 手动去指定 -->
+			<generator class="assigned"></generator>
+		</id>
+		
+		<!-- 其它字段映射 -->
+		<!--  
+			name:实体类的属性名
+			column：数据库中的字段名
+			type:类型  
+			     java类型：写上类的全名
+			     hibernate类型： 如： string
+		-->
+		<property name="cname" column="cname" type="string"></property>
+		<property name="descr" column="descr" type="string"></property>
+		
+	</class>
+
+</hibernate-mapping>

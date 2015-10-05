@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="com.dantefung.hibernate_extends">
+	
+	<!--  abstract="true" 当前类不生成表-->
+	<class name="Animal" abstract="true">
+	<!-- 父类： start -->
+		<!-- 主键 -->
+		<id name="id">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="name"></property>
+		<!-- 父类：end -->
+		
+		<!-- 子类：猫 -->
+		<union-subclass name="Cat" table="cat">
+			<property name="catching"></property>
+		</union-subclass>
+		
+		<!-- 子类： 狗 -->
+		<union-subclass name="Dog" table="dog">
+		    <property name="play"></property>
+		</union-subclass>
+	</class>
+	
+	
+</hibernate-mapping>

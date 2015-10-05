@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	<hibernate-mapping package="com.dantefung.hibernate_one2one">
+	<!-- 一对一映射：第二种方式 -->
+	    <class name="Card" table="card">
+	    	<id name="user_id" column="user_id" type="int">
+	    		<!-- 主键生成策略：外键策略！-->
+	    	    <generator class="foreign">
+	    	    <!-- 外键引用User对象的主键   注意：不写对象属性会导致空指针异常 index.intValue()  index= null-->
+	    	    	<param name="property">user</param>
+	    	    </generator>
+	    	</id>
+	    	
+	    	<property name="cardNo" column="cardNo" type="string" length="30"></property>
+	    	<property name="place" column="place" type="string"></property>
+	    		
+		<!-- 
+			一对一，有外键方
+			constrained="true"  给主键字段添加外键约束！
+		 -->
+		 <one-to-one name="user" class="User" constrained="true"></one-to-one>
+	    </class>
+	</hibernate-mapping>

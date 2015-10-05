@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.dantefung.blog.entity">
+
+	<class name="Article" table="article">
+	<!-- 主键映射 -->
+		<id name="aid">
+			<generator class="assigned"></generator>
+		</id>
+		
+		<!-- 其它字段映射 -->
+		<!--  
+			name:实体类的属性名
+			column：数据库中的字段名
+			type:类型  
+			     java类型：写上类的全名
+			     hibernate类型： 如： string
+		-->
+		<property name="title" column="title" type="string"></property>
+		<!--注意： 这个是外键 按下面多对一配置    -->
+		<!-- <property name="cid" column="cid" type="string"></property> -->
+		<property name="digest" column="digest" type="string"></property>
+		<property name="content" column="content" type="string"></property>
+		<property name="acount" column="acount" type="integer"></property>
+		<property name="atimestamp" column="atimestamp" type="string"></property>
+		<!--  注意：这个是外键按下面多对多的配置-->
+		<!-- <property name="label" column="label" type="string"></property> -->
+		
+		 <!-- 类别 与 文章 -->
+		 <!-- name 对象属性  column 数据库中的字段名（主键名） -->
+		<many-to-one name="category" column="cid" class="Category"></many-to-one>
+		
+		<!-- 文章 与 评论 -->
+		<set name="comments" table="comments"> <!-- 实体类中的List<Comments> comments -->
+		    <key column="aid"></key>   <!--集合表的属性 引用当前表的主键 -->
+		 	<one-to-many class="Comments"/>
+		</set>
+		
+		<!-- 文章 与 标签-->
+		<set name="Label" table="articleLabel" inverse="false"> <!-- 实体类中的List<Label> label   中间表：articleLabel-->
+		    <key column="aid"></key>   <!--中间表的外键   引用当前表的主键 -->
+		 	<many-to-many  column="lid" class="Label"/>
+		</set>
+	</class>
+
+</hibernate-mapping>
