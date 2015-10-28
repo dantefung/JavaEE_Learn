@@ -12,10 +12,10 @@
       <filter-class>com.dantefung.filter_gzip.GZIPFilter</filter-class>
   </filter>
   
-  <filter-mapping>
+<!--   <filter-mapping>
   		<filter-name>GZIPFilter</filter-name>
   		<url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
   
   <filter>
       <filter-name>SecurityFilter</filter-name>
@@ -396,8 +396,26 @@
         <servlet-name>DownServlet</servlet-name>
         <servlet-class>com.dantefung.down.DownServlet</servlet-class>
     </servlet>
+  <servlet>
+    <servlet-name>CityServlet</servlet-name>
+    <servlet-class>com.dantefung.ajax.CityServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CurrentTimeServlet</servlet-name>
+    <servlet-class>com.dantefung.ajax.CurrentTimeServlet</servlet-class>
+  </servlet>
+
+
     <servlet-mapping>
         <servlet-name>DownServlet</servlet-name>
         <url-pattern>/DownServlet</url-pattern>
     </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CityServlet</servlet-name>
+    <url-pattern>/cityServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CurrentTimeServlet</servlet-name>
+    <url-pattern>/currentTimeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

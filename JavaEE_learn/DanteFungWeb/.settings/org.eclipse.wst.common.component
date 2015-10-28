@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JunitTest"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sql"/>
         <property name="context-root" value="/DanteFungWeb"/>
         <property name="java-output-path" value="/DanteFungWeb/WebRoot/WEB-INF/classes"/>
     </wb-module>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="config" namespace="/admin" extends="struts-default">
+ <!-- 配置图片验证码 -->
+    	<action name="imageCode" class="com.dantefung.book.web.action.ImageCodeAction" method="execute">
+        	<result name="myImageResult" type="myBytesResult">
+            	<param name="contentType">${myContentType}</param>
+            	<!-- <param name="contentDisposition">${myContentDisposition}</param> -->
+            	<param name="contentLength">${myContentLength}</param>
+            	<param name="bufferSize">${myBufferSize}</param>
+        	</result>
+    	</action>
+   </package>
+</struts>

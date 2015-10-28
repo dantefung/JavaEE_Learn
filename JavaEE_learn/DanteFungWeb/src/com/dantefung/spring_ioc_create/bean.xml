@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	 http://www.springframework.org/schema/beans/spring-beans.xsd
+     	 http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+     	 http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<!-- 配置的顺序不同：对象的创建顺序也不同，配置在前面的bean先创建 -->
+	<!-- 单例：饿汉式 -->
+	<bean id="user" class="com.dantefung.spring_ioc_create.User" >
+			<!-- 构造参数：按顺序 -->
+		     <constructor-arg name="id" type="String"  value="2">
+		     </constructor-arg>
+		     <constructor-arg name="name" type="String" value="张三">
+		     </constructor-arg>
+	</bean>
+	
+	<bean id="admin" class="com.dantefung.spring_ioc_create.Admin">
+			<!-- 构造参数：不按顺序，用index指定 -->
+			<constructor-arg name="name" type="String"  value="李斯" index="1"></constructor-arg>
+			<constructor-arg name="id" type="String" value="1" index="0"></constructor-arg>
+	</bean>
+	
+	<!--
+	       为什么这么写？
+	       联想之前的写法：  String str = new String("李四");
+	 -->
+	<bean name="str" class="java.lang.String">
+		<!-- 注意：要这样写 -->
+		<constructor-arg value="90"></constructor-arg>
+	</bean>
+	
+	<bean name="str_" class="java.lang.String">
+		<!-- 注意：要这样写 -->
+		<constructor-arg value="李达"></constructor-arg>
+	</bean>
+	
+	<bean name="person" class="com.dantefung.spring_ioc_create.Person">
+			<constructor-arg type="String" ref="str"></constructor-arg>
+			<constructor-arg  type="String"  ref="str_"></constructor-arg>
+	</bean>
+	
+	<!-- 类比之前java的写法 -->
+	<!-- 调用工厂的静态方法创建User对象 -->
+	<bean name="man_static" class="com.dantefung.spring_ioc_create.Factory" factory-method="getInstanceByStatic"></bean>
+
+	<!-- 类比之前java的写法 -->
+   <!-- 1.先创建工厂对象 -->
+	<bean name="factory" class="com.dantefung.spring_ioc_create.Factory" ></bean>
+	<!--2.调用工厂的非静态方法 创建User对象-->
+	<bean name="man_" class="com.dantefung.spring_ioc_create.Man" factory-bean="factory" factory-method="getInstance"></bean>
+	
+	<!-- 带构造参数的工厂 -->
+	<bean name="factory_" class="com.dantefung.spring_ioc_create.Factory" >
+		<constructor-arg name="name" value="Bean工厂"></constructor-arg>
+	</bean>
+</beans>     
+

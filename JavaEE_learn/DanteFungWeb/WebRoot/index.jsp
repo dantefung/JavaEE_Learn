@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@taglib uri="http://www.dantefung.com/simple" prefix="simple"%>
 <%
 String path = request.getContextPath();
@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <h3>ÓÃ»§Ö÷Ò³</h3> <br>
+    <h3>ç”¨æˆ·ä¸»é¡µ</h3> <br>
     <h3/>
     <form action="#" method="post"> 
   		<simple:login username="username" 

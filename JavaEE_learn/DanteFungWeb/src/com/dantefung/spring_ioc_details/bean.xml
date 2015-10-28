@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	 http://www.springframework.org/schema/beans/spring-beans.xsd
+     	 http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+     	 http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<!-- 配置的顺序不同：对象的创建顺序也不同，配置在前面的bean先创建 -->
+	<!-- 单例：饿汉式 -->
+<!-- 	<bean id="user" class="com.dantefung.spring_ioc_details.User" lazy-init="default"></bean> -->
+	<!--  单例：懒加载（懒汉式）-->
+<!-- 	<bean id="admin" class="com.dantefung.spring_ioc_details.Admin" lazy-init="true"></bean> -->
+	<!-- 多例 -->
+	<!-- <bean id="dog" class="com.dantefung.spring_ioc_details.Dog" scope="prototype" ></bean> -->
+	<!--  单例：init  & destroy-->
+	<!-- <bean id="Car" class="com.dantefung.spring_ioc_details.Car" init-method="init"  destroy-method="destroy" ></bean> -->
+	<bean id="tank" class="com.dantefung.spring_ioc_details.Tank" init-method="init"  destroy-method="destroy" ></bean> 
+
+
+</beans>     
+

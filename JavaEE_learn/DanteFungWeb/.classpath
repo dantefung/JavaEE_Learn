@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="JunitTest"/>
+	<classpathentry kind="src" path="sql"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
@@ -22,6 +23,11 @@
 	<classpathentry kind="lib" path="struts_lib/ognl-3.0.5.jar"/>
 	<classpathentry kind="lib" path="struts_lib/struts2-core-2.3.4.1.jar"/>
 	<classpathentry kind="lib" path="struts_lib/xwork-core-2.3.4.1.jar"/>
+	<classpathentry kind="lib" path="spring_core/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="spring_core/spring-beans-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring_core/spring-context-3.2.5.RELEASE.jar" sourcepath="source/spring-context-3.2.5.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring_core/spring-core-3.2.5.RELEASE.jar" sourcepath="source/spring-core-3.2.5.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring_core/spring-expression-3.2.5.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="hibernate_lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="hibernate_lib/c3p0-0.9.1.jar"/>

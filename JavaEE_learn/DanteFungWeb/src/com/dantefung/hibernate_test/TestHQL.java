@@ -220,7 +220,7 @@ public class TestHQL {
 		query.setString(0, "1b9ef0137c984131bd8a397eee7a8033");
 		System.out.println("普通占位符查询:\t"+query.list());
 		// 2.7.2 带命令参数的占位符查询
-		Query query2 = session.createQuery("from Article where aid=:id_ ");
+		Query query2 = session.createQuery("from Article where aid=:id_");
 		query2.setString("id_", "a3c041e1deb0494a87b5949b24f33d55");
 		System.out.println("带命令参数的占位符查询：\t" + query2.list());
 		// 提交事务

@@ -41,6 +41,7 @@ public class TestBoss {
 									sb.sing(money/2);
 								}
 								
+								
 								if("dance".equals(method.getName())){
 									sb.sing(money/2);
 								}
