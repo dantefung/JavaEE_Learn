@@ -16,59 +16,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<meta charset="utf-8">
 	
 	<script type="text/javascript">
-		// 这样写，起到解耦的作用
-		window.onload = function()
-		{
-			var method = "GET";
-			var url = "${pageContext.request.contextPath}/cityServlet?country=";
-			// 给select id="country"注册事件
-			document.getElementById("country").onchange = function()
-			{
-				// 获取选中的option的value[this:document.getElementById("country")]
-				var opt = this.options[this.selectedIndex].value;
-				// 判断
-				if( "中国" == opt )
-				{
-					// 显示中国的城市
-					// 1.数据从哪里来？服务器
-					// 1.1 发送请求
-					// (1) 创建ajax对象
-					var ajax = createAjax();
-					// (2) 设置回调函数
-					ajax.onreadystatechange = function()
-					{
-						// 2.数据到哪里去？jsp页面
-						 if(ajax.readyState==4)
-						    {
-						    	// 2.1从服务器的response获得数据
-						    	var jso = ajax.responseText;
-						    	alert(jso);
-						    }
+		window.onload = function(){
+			document.getElementById("country").onchange = function(){
+				var sendType = "post";
+				var dataType = "xml";
+				//1、获取国家的值
+				var country = document.getElementById("country").value;
+				if("请选择"!=country){
+					//2、根据国家获取该国家的城市列表并且将返回的城市列表设置到城市下拉框中
+					//1、创建一个ajax对象；
+					var ajax = createAJax();
+					//2、设置onreadystatechange回调方法；
+					ajax.onreadystatechange = function(){
+						if(ajax.readyState == 4 && ajax.status == 200){
+							var citySelect = document.getElementById("city");
+							//清空城市列表
+							citySelect.length = 0;
+							if("xml" == dataType){
+								var xmlDocument = ajax.responseXML;
+								var cities = xmlDocument.getElementsByTagName("city");//<city>bj</city>
+								//遍历城市列表
+								for(var i = 0; i < cities.length; i++){
+									var opt = document.createElement("option");
+									opt.text = cities[i].firstChild.nodeValue;
+									citySelect.appendChild(opt);
+								}
+							} else {
+								//返回的数据格式是json，将json格式字符串转为json对象
+								var jso = eval("(" + ajax.responseText + ")");
+								
+								//{"cities":[{"city":"北京"},{"city":"上海"}]}
+								var cities = jso.cities;
+								for(var j = 0; j < cities.length; j++){
+									var opt = document.createElement("option");
+									opt.text = cities[j].city;
+									citySelect.appendChild(opt);
+								}
+							}
+							
+						}
 					}
-					// (3) 与服务器建立连接
-					ajax.open(method, url+opt+"&method="+method, true);
-					// (4)  发送请求
-					ajax.send();
-				}
-				else// 美国
-				{
-					// 显示美国的城市
+					//3、调用open方法，建立与服务器的连接；
+					ajax.open(sendType, "${pageContext.request.contextPath}/cityServlet?sendType=" + sendType + "&dataType=" + dataType, true);
+					//如果需要使用post传递比较多的参数需要设置content-type
+					ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					//4、调用send方法，发送请求和数据
+					ajax.send("country=" + country+"&firstName=bill");
+					
+				} else {
+					//清空城市列表
+					document.getElementById("city").length = 0;
 				}
 			}
-			
-			function createAjax()
-			{
-				try
-				{
-					// Firefox, Opera 8.0+, Safari
-					var ajax = new XMLHttpRequest();
-				}
-				catch(e)// IE7-
-				{
-					var ajax = new ActiveXObject("Microsoft.XMLHTTP");
+			//创建ajax
+			function createAJax(){
+				var ajax;
+				if(XMLHttpRequest){
+					//现代浏览器
+					ajax = new XMLHttpRequest();
+				} else {
+					//ie7- 或非现代浏览器
+					ajax = new ActiveXObject("Microsoft.XMLHTTP");
 				}
 				return ajax;
 			}

@@ -28,6 +28,12 @@
 	<classpathentry kind="lib" path="spring_core/spring-context-3.2.5.RELEASE.jar" sourcepath="source/spring-context-3.2.5.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="spring_core/spring-core-3.2.5.RELEASE.jar" sourcepath="source/spring-core-3.2.5.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="spring_core/spring-expression-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="oracle-lib/ojdbc5.jar"/>
+	<classpathentry kind="lib" path="poi-lib/poi-excelant-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="poi-lib/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="poi-lib/poi-ooxml-schemas-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="poi-lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="poi-lib/poi-3.13-20150929.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="hibernate_lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="hibernate_lib/c3p0-0.9.1.jar"/>

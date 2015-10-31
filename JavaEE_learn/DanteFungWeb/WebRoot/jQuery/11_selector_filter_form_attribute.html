@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>表单对象属性过滤选择器</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <style type="text/css">
+    	body{
+    		font-family: "Microsoft YaHei"
+    	}
+    	.cGreen{background-color: #4CA902}
+    	.cPink{background-color: #ED4A9F}
+    	.cBlue{background-color: #0092E7}
+    	.cCyan{background-color: #01A6A2}
+    	.cYellow{background-color: #DCA112}
+    	.cRed{background-color: #B7103B}
+    	.cPurple{background-color: #792F7C}
+    	.cBlack{background-color: #110F10}
+    	.hide{display: none;}
+    </style>
+    <script type="text/javascript">
+    
+    	$(document).ready(function(){
+    		$("#btn1").click(function()
+    		{
+    			console.log($(":text:enabled"));
+    		});
+    		$("#btn2").click(function()
+    		{
+    			console.log($(":text:disabled"));
+    		});
+    		$("#btn3").click(function()
+    		{
+    			console.log($(":checkbox:checked,:radio:checked"));
+    		});
+    		$("#btn4").click(function()
+    		{
+    			$("input[value='chn']").prop("checked",true);
+    			console.log($("input[value='chn']"));
+    			/*
+    			//如果是radio的值设置只接收数组
+    			$(":radio").val(["chn"]);
+    			*/
+    		});
+    		$("#btn5").click(function()
+    		{
+    			$("select:first > option:eq(1)").prop("selected",true);
+    			console.log($("select>option:eq(1)"));
+    			
+    			/*
+    			//设置第一个select选中  编译原理
+    			//select的值设置接受字符串或者数组
+    			$("select:first").val("编译原理");
+    			*/
+    		});
+    		$("#btn6").click(function()
+    		{
+    			$("select:eq(1)").val(["软件工程","数据库原理"]);
+    		});
+    		$("#btn7").click(function()
+    		{
+    			console.log($(":radio:not(:checked), :checkbox:not(:checked)"));
+    		});
+    		$("#btn8").click(function()
+    		{
+    			console.log($("select option:selected"));
+    		});
+    	});
+    </script>
+  </head>
+  
+  <body>
+    <input type="text" name="text1" value="可用单行文本输入框">
+    <input type="text" name="text2" value="不可用单行文本输入框" disabled="disabled">
+    <select>
+    	<option>软件工程</option>
+    	<option>编译原理</option>
+    	<option>数据库原理</option>
+    </select>
+    <select multiple="multiple">
+    	<option>软件工程</option>
+    	<option>编译原理</option>
+    	<option>数据库原理</option>
+    </select>
+    <br><br>
+    <input type="radio" name="country" value="chn">中国
+    <input type="radio" name="country" value="usa">美国
+    &nbsp;&nbsp;
+    <input type="checkbox" name="language" value="Java">Java
+    <input type="checkbox" name="language" value="IOS">IOS
+    <input type="checkbox" name="language" value="Android">Android
+    <br><br>
+    <hr>
+    <input type="button" id="btn1" value=":enabled选取所有可用的单行文本input元素">
+    <input type="button" id="btn2" value=":disabled选取所有不可用的单行文本input元素">
+    <input type="button" id="btn3" value=":checked请先选择，然后选取所有被选中的单选、多选元素">
+    <input type="button" id="btn4" value="设置 中国 被选中">
+    <input type="button" id="btn5" value="设置第一个select选中  编译原理">
+    <input type="button" id="btn6" value="设置第二个select选中  软件工程和数据库原理">
+    <input type="button" id="btn7" value="选取所有没有被选中的单选、多选元素">
+    <input type="button" id="btn8" value=":selected选取所有被选中的select下拉列表的option选项元素">
+  </body>
+</html>

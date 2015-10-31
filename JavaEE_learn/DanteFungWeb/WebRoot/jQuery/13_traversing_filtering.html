@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>筛选</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <style type="text/css">
+    	body{
+    		font-family: "Microsoft YaHei"
+    	}
+    	.cGreen{color: #4CA902}
+    	.cPink{color: #ED4A9F}
+    	.cBlue{color: #0092E7}
+    	.cCyan{color: #01A6A2}
+    	.cYellow{color: #DCA112}
+    	.cRed{color: #B7103B}
+    	.cPurple{color: #792F7C}
+    	.cBlack{color: #110F10}
+    	.cOrange{color: #FF4500}
+    	.cGray{color: #A9A9A9}
+    	.hide{display: none;}
+    	span {
+    		float:left;
+    	}
+    	ul li {
+    		width:120px;
+    		float: left;
+    		margin-left: 10px;
+    	}
+    </style>
+    <script type="text/javascript">
+    
+    	$(document).ready(function(){
+    		$("#btn1").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    			console.log($("#chn li").first());
+    		});
+    		$("#btn2").click(function()
+    		{
+    			$("#chn li").last().addClass("cGreen");
+    		});
+    		$("#btn3").click(function()
+    		{
+    			$("#chn li[]").parent.is("ul");
+    		});
+    		$("#btn4").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    		$("#btn5").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    		$("#btn6").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    		$("#btn7").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    		$("#btn8").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    		$("#btn9").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    		$("#btn10").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    		$("#btn11").click(function()
+    		{
+    			$("#chn li").first().addClass("cGreen");
+    		});
+    	});
+    </script>
+    
+  </head>
+  
+  <body>
+  	<span>中国城市</span>：<br>
+    <ul id="chn">
+    	<li id="bj"><span style="font-weight: bold;">北京</span></li>
+    	<li id="sh">上海</li>
+    	<li id="gz">广州</li>
+    	<li id="sz">深圳</li>
+    	<li id="hk">香港</li>
+    </ul>
+    <br><br>
+    <span>美国城市</span>：<br>
+    <ul id="usa">
+    	<li id="wst"><span style="font-weight: bold;">华盛顿特区</span></li>
+    	<li id="ny">纽约</li>
+    	<li id="la">洛杉矶</li>
+    	<li id="scg">芝加哥</li>
+    </ul>
+    <br><br>
+    <span>德国城市</span>：<br>
+    <ul id="ger">
+    	<li id="mnh">慕尼黑</li>
+    </ul>
+    <div style="clear:both;"></div>
+    <br><br>
+    <hr>
+    <input type="button" id="btn1" value="first()筛选中国的第一个城市">
+    <input type="button" id="btn2" value="last()筛选美国的最后一个城市">
+    <input type="button" id="btn3" value="is()判断广州（li）的父元素是否是ul元素，若是则输出该元素的id值">
+    <input type="button" id="btn4" value="has()筛选加粗的城市并将其颜色设置为红色">
+    <input type="button" id="btn5" value="find()查找美国城市中所有的span元素">
+    <input type="button" id="btn6" value="parent()查找城市(li元素)的父元素，并且父元素的id为chn ">
+    <input type="button" id="btn7" value="siblings()选取广州(li元素)的所有兄弟城市">
+  </body>
+</html>

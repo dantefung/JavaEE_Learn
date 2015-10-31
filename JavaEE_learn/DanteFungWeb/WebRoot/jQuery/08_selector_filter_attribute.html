@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>属性过滤选择器</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <style type="text/css">
+    	body{
+    		font-family: "Microsoft YaHei"
+    	}
+    	.divCls {
+    		width:180px;
+    		height:180px;
+    		color: white;
+    		border: solid 1px white;
+    		margin-left: 10px;
+    		float: left;
+    		background-color: #792F7C;
+    	}
+    	.subDivCls {
+    		width:60px;
+    		height:60px;
+    		color:white;
+    		border: solid 1px white;
+    		font-size: 12px;
+    		margin: 5px;
+    		float: right;
+    		background-color: #01A6A2;
+    	}
+    	.spanCls{
+    		color:white;
+    		border: solid 1px white;
+    		margin: 5px;
+    		float: left;
+    		height: 50px;
+    		background-color: #ED4A9F;
+    	}
+    	div span{
+    		border: solid 1px white;
+    		font-size: 12px;
+    		margin:5;
+    		background-color: #ED4A9F;
+    	}
+    	.cGreen{background-color: #4CA902}
+    	.cPink{background-color: #ED4A9F}
+    	.cBlue{background-color: #0092E7}
+    	.cCyan{background-color: #01A6A2}
+    	.cYellow{background-color: #DCA112}
+    	.cRed{background-color: #B7103B}
+    	.cPurple{background-color: #792F7C}
+    	.cBlack{background-color: #110F10}
+    	.cOrange{background-color: #FF4500}
+    	.cGray{background-color: #A9A9A9}
+    	.hide{display: none;}
+    </style>
+    <script type="text/javascript">
+    
+    	$(document).ready(function(){
+    		$("#btn1").click(function(){
+    			$("div[id]").addClass("cBlack");
+    		});
+    		$("#btn2").click(function(){
+    			$("div[title='itcast']").addClass("cBlack");
+    		});
+    		$("#btn3").click(function(){
+    			$("div[title!='itcast']").addClass("cBlack");
+    		});
+    		$("#btn4").click(function(){
+    			$("div[title^='it']").addClass("cBlack");
+    		});
+    		$("#btn5").click(function(){
+    			$("div[title$='cast']").addClass("cBlack");
+    		});
+    		$("#btn6").click(function(){
+    			$("div[title*='it']").addClass("cBlack");
+    		});
+    		$("#btn7").click(function(){
+    			$("div[id][title*='s']").addClass("cBlack");
+    		});
+    	});
+    	
+    </script>
+  </head>
+  
+  <body>
+    <div id="div1" class="divCls" title="test">id 为div1 的div，title为test<br><br>
+    	<div class="subDivCls">class为subDivCls的div</div>
+   	</div>
+    <div id="div2" class="divCls">id 为div2 的div
+    	<br><br>
+    	<span id="span1">div2里面的span,id为span1</span>
+    	<br><br>
+    	<div class="subDivCls" style="float:left;">class为subDivCls的div</div>
+    	<div class="subDivCls">subDivCls
+    		<span id="span2">span2</span>
+    	</div>
+    </div>
+    <div id="div3" class="divCls" title="itcast">
+    id 为div3 的div，title为itcast，包含隐藏输入框
+		<input type="hidden" value="hello">    	
+    </div>
+    <span class="spanCls">div3的兄弟元素span</span>
+    <div id="div4" class="divCls">id 为div4 的div<br>
+	    <div class="subDivCls" style="float:left;">subDivCls<br>
+    		<span id="span2">span4</span></div>
+	    <div class="subDivCls" title="itcast">title为itcast</div>
+	    <div class="subDivCls" style="float:left;" title="test">title为test</div>
+	    <div class="subDivCls"></div>
+    </div>
+    <p style="clear:both;"></p>
+    <br>
+    <hr>
+    <input type="button" id="btn1" value="选取所有含有id属性的div元素">
+    <input type="button" id="btn2" value="选取title属性值等于itcast的div元素">
+    <input type="button" id="btn3" value="选取不含有title属性或title属性值不等于itcast的div元素">
+    <input type="button" id="btn4" value="选取title属性值是以it开头的div元素">
+    <input type="button" id="btn5" value="选取title属性值是以cast结尾的div元素">
+    <input type="button" id="btn6" value="选取title属性值包含有s的div元素">
+    <input type="button" id="btn7" value="选取含有id属性并且title属性值包含有s的div元素">
+  </body>
+</html>

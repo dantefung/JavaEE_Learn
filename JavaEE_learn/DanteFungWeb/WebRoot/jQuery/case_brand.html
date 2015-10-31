@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>案例-品牌选择</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <style type="text/css">
+    	body{
+    		font-family: "Microsoft YaHei";
+    		text-align: center;
+    	}
+    	#mainDiv {
+    		width: 100%;
+    		text-align: center;
+    		margin-top:10px;
+    	}
+    	
+    	.divRow {
+    		text-align: center;
+    		margin-left: auto;
+    		margin-right: auto;
+    		width:736px;
+    	}
+    	
+    	.divColumn {
+    		width:104px;
+    		height:38px;
+    		color: #005aa0;
+    		border: solid 1px #b9b9b9;
+    		font-size:14px;
+    		float:left;
+    		margin: 0 -1 -1 0;
+    		text-align: center;
+    		cursor: pointer;
+    	}
+    	
+    	.divColumn a {
+    		height: 36px;
+    		line-height: 36px;
+    		overflow: hidden;
+    		padding: 0;
+    		position: relative;
+    		white-space: nowrap;
+    		width: 102px;
+    		display: inline-block;
+    	}
+    	
+    	.divColumn img {
+    		display: block;
+    		height: 36px;
+    		position: absolute;
+    		width:102px;
+    		z-index:1;
+    		left:0;
+    		top:0;
+    	}
+    	
+    	.hover {
+			color: #e4393c;
+    		border: solid 1px #e4393c; 
+    		position: relative;
+    	}
+    	.more,.fold {
+    		font-size: 12px;
+    		color: #005aa0;
+    		cursor: pointer;
+    	}
+    	.more b{
+    		background: rgba(0,0,0,0) url("images/down.gif") no-repeat;
+    		height: 5px;
+    		overflow: hidden;
+    		position: absolute;
+    		width: 7px;
+    		margin:6 0 0 3;
+    	}
+    	.fold b{
+    		background: url("images/up.gif");
+    	}
+    	.cGreen{background-color: #4CA902}
+    	.cPink{background-color: #ED4A9F}
+    	.cBlue{background-color: #0092E7}
+    	.cCyan{background-color: #01A6A2}
+    	.cYellow{background-color: #DCA112}
+    	.cRed{background-color: #B7103B}
+    	.cPurple{background-color: #792F7C}
+    	.cBlack{background-color: #110F10}
+    	.cOrange{background-color: #FF4500}
+    	.cGray{background-color: #A9A9A9}
+    	.hide{display: none;}
+    </style>
+    <script type="text/javascript">
+    
+    	$(document).ready(function(){
+			
+    	});
+    </script>
+  </head>
+  
+  <body>
+    <div id="mainDiv">
+    	<div class="divRow">
+    		<div class="divColumn">
+    			<a><img alt="华为" src="images/huawei.jpg">华为</a>
+    		</div>
+    		<div class="divColumn">
+    			<a><img alt="小米" src="images/xiaomi.jpg">小米</a>
+    		</div>
+    		<div class="divColumn">
+    			<a><img alt="三星" src="images/samsung.jpg">三星</a>
+    		</div>
+    		<div class="divColumn">
+    			<a><img alt="苹果" src="images/apple.jpg">苹果</a>
+    		</div>
+    		<div class="divColumn">
+    			<a><img alt="魅族" src="images/meizu.jpg">魅族</a>
+    		</div>
+    		<div class="divColumn">
+    			<a><img alt="诺基亚" src="images/nokia.png">诺基亚</a>
+    		</div>
+    		<div class="divColumn">
+    			<a><img alt="vivo" src="images/vivo.png">vivo</a>
+    		</div>
+    		<div class="divColumn">
+    			<a>OPPO</a>
+    		</div>
+    		<div class="divColumn">
+    			<a>BlackBerry</a>
+    		</div>
+    		<div class="divColumn">
+    			<a>努比亚</a>
+    		</div>
+    		<div class="divColumn">
+    			<a>联想</a>
+    		</div>
+    		<div class="divColumn">
+    			<a>索尼</a>
+    		</div>
+    		<div class="divColumn">
+    			<a>酷派</a>
+    		</div>
+    		<div class="divColumn">
+    			<a>HTC</a>
+    		</div>
+    	</div>
+    	<div class="more"><span>更多<b></b></span></div>
+   	</div>
+  </body>
+</html>

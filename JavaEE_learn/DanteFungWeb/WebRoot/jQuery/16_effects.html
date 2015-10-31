@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>效果</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <style type="text/css">
+    	body{
+    		font-family: "Microsoft YaHei";
+    		text-align: center;
+    	}
+    	#mainDiv {
+    		width: 100%;
+    		text-align: center;
+    		margin-top:10px;
+    	}
+    	.div1 {
+    		width:320px;
+    		height:120px;
+    		color: white;
+    		background-color: #0092E7;
+    		margin-left: auto;
+    		margin-right: auto;
+    	}
+    	.div2 {
+    		width:320px;
+    		height:120px;
+    		margin-top:10px;
+    		margin-left: auto;
+    		margin-right: auto;
+    		
+    	}
+    	.div2_1 {
+    		width:155px;
+    		height:100%;
+    		color: white;
+    		float: left;
+    		text-align: center;
+    	}
+    	
+    	.cGreen{background-color: #4CA902}
+    	.cPink{background-color: #ED4A9F}
+    	.cBlue{background-color: #0092E7}
+    	.cCyan{background-color: #01A6A2}
+    	.cYellow{background-color: #DCA112}
+    	.cRed{background-color: #B7103B}
+    	.cPurple{background-color: #792F7C}
+    	.cBlack{background-color: #110F10}
+    	.cOrange{background-color: #FF4500}
+    	.cGray{background-color: #A9A9A9}
+    	.hide{display: none;}
+    </style>
+    <script type="text/javascript">
+    
+    	$(document).ready(function(){
+    		
+    	});
+    </script>
+  </head>
+  
+  <body>
+    <div id="mainDiv">
+    	<div class="div1">①</div>
+    	<div class="div2">
+    		<div class="div2_1 cPink" style="margin-right:5px;">②</div>
+    		<div class="div2_1 cGreen" style="margin-left:5px;">③</div>
+    	</div>
+   	</div>
+    <p style="clear:both;"></p>
+    <br>
+    <hr>
+    <input type="button" id="btn1" value="hide()隐藏蓝色区域块">
+    <input type="button" id="btn2" value="show()隐藏蓝色区域块">
+    <input type="button" id="btn3" value="slideUp()通过高度变化（向上减小）来动态地隐藏粉色区域块">
+    <input type="button" id="btn4" value="slideDown()通过高度变化（向下增大）来动态地显示粉色区域块">
+    <input type="button" id="btn5" value="slideToggle()通过高度变化来切换粉色区域块的可见性">
+    <input type="button" id="btn6" value="fadeOut()通过不透明度的变化来实现淡出绿色块">
+    <input type="button" id="btn7" value="fadeIn()通过不透明度的变化来实现淡入绿色块">
+    <input type="button" id="btn8" value="fadeToggle()通过不透明度的变化淡入和淡出绿色块">
+    <input type="button" id="btn9" value="fadeTo()通过不透明度以渐进方式调整蓝色块到指定的不透明度（0.4）">
+    <input type="button" id="btn10" value="animate()通过制定自定义动画操作粉、绿色块">
+  </body>
+</html>

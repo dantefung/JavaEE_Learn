@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>ModalDialog</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+	<script type="text/javascript">
+		window.onload = function(){
+			//父窗口
+			var parentWindow;
+			
+			if(window.opener){
+				//以open方法打开的标签页
+				parentWindow = window.opener.parent;
+			} else {
+				parentWindow = window.dialogArguments;
+			}
+			
+			var leftSelect = document.getElementById("leftSelect");
+			var rightSelect = document.getElementById("rightSelect");
+			
+			//回显父窗口中选项到子窗口：将左边删除将要回填到右边下拉框的那些选项；右边添加已选中选项
+			var strs = parentWindow.document.getElementsByTagName("span")[0].innerHTML;
+			if(strs != ""){
+				var opts = strs.split("，");//一个个的学科值
+				for(var j = 0; j < opts.length; j++){//遍历从父窗口传递过来的选项
+					for(var k = 0; k < leftSelect.length; k++){
+						if(opts[j] == leftSelect.options[k].text){
+							//① 删除左边选项
+							leftSelect.options.remove(k);
+							//② 将删除的选项添加到右边
+							var opt = document.createElement("option");
+							opt.text = opts[j];
+							rightSelect.appendChild(opt);
+							break;
+						}
+					}
+				}
+			}
+			
+			//1、部分右移：将左边选中的多个选项移动到右边下拉框选项中
+			document.getElementById("btn2Right").onclick = function(){
+				//① 获取到左边下拉框中选中的选项
+				while(leftSelect.selectedIndex > -1){
+					var opt = document.createElement("option");
+					opt.text = leftSelect.options[leftSelect.selectedIndex].text;
+					//② 将获取到的选项移动到右边下拉框中（将左边下拉框中选中选项删除，添加新选项到右边）
+					rightSelect.appendChild(opt);
+					//删除左边的选中选项
+					leftSelect.options.remove(leftSelect.selectedIndex);
+				}
+				
+			}
+			
+			//2、全部右移：将左边全部选项移动到右边下拉框选项中
+			document.getElementById("btn2AllRight").onclick = function(){
+				//① 获取到左边下拉框中的选项
+				for(var i = leftSelect.length; i > 0 ; i--){
+					var opt = document.createElement("option");
+					opt.text = leftSelect.options[0].text;
+					//② 将获取到的选项移动到右边下拉框中（将左边下拉框中选中选项删除，添加新选项到右边）
+					rightSelect.appendChild(opt);
+					//删除左边的选中选项
+					leftSelect.options.remove(0);
+				}
+				
+			}
+			
+			//3、部分左移：将右边选中的多个选项移动到左边下拉框选项中
+			document.getElementById("btn2Left").onclick = function(){
+				//① 获取到右边下拉框中选中的选项
+				while(rightSelect.selectedIndex > -1){
+					var opt = document.createElement("option");
+					opt.text = rightSelect.options[rightSelect.selectedIndex].text;
+					//② 将获取到的选项移动到左边下拉框中（将右边下拉框中选中选项删除，添加新选项到左边）
+					leftSelect.appendChild(opt);
+					//删除右边的选中选项
+					rightSelect.options.remove(rightSelect.selectedIndex);
+				}
+				
+			}
+			
+			//4、全部左移：将右边选中的全部选项移动到左边下拉框选项中
+			document.getElementById("btn2AllLeft").onclick = function(){
+				//① 获取到右边下拉框中的选项
+				for(var i = rightSelect.length; i > 0 ; i--){
+					var opt = document.createElement("option");
+					opt.text = rightSelect.options[0].text;
+					//② 将获取到的选项移动到左边下拉框中（将右边下拉框中选中选项删除，添加新选项到左边）
+					leftSelect.appendChild(opt);
+					//删除右边的选中选项
+					rightSelect.options.remove(0);
+				}
+				
+			}
+			
+			//5、确定：将右边的所有选项获取到，回填到父窗口
+			document.getElementById("btnConfirm").onclick = function(){
+				var str = "";
+				for(var i = 0; i < rightSelect.length ; i++){
+					if(str != ""){
+						//非第一个值，需要加，
+						str += "，" + rightSelect.options[i].text;
+					} else {
+						str = rightSelect.options[i].text;
+					}
+				}
+				
+				//将选项字符串回填到父窗口
+				parentWindow.document.getElementsByTagName("span")[0].innerHTML = str;
+				
+				//关闭当前按钮
+				window.close();
+			}
+			
+			//6、关闭当前窗口
+		}
+	</script>
+  </head>
+  
+  <body>
+    <table width="100%">
+    	<tr>
+    		<td width="40%" align="center">
+    			<select style="width:70%;" id="leftSelect" multiple="multiple" size="12">
+    				<option>Java - EE 学科</option>
+    				<option>Java - Android 学科</option>
+    				<option>C 学科</option>
+    				<option>C++ 学科</option>
+    				<option>IOS 学科</option>
+    				<option>.Net 学科</option>
+    				<option>PHP 学科</option>
+    				<option>网页平面 学科</option>
+    			</select>
+    		</td>
+    		<td align="center">
+    			<input type="button" id="btn2Right" value=">"><br><br>
+    			<input type="button" id="btn2AllRight" value=">>"><br><br><br>
+    			<input type="button" id="btn2Left" value="<"><br><br>
+    			<input type="button" id="btn2AllLeft" value="<<">
+    		</td>
+    		<td width="40%" align="center">
+    			<select style="width:70%;" id="rightSelect" multiple="multiple" size="12">
+    			</select>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" height="10px"></td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" align="center">
+    			<input type="button" id="btnConfirm" value="确定"> &nbsp;&nbsp;
+    			<input type="button" value="关闭" onclick="window.close()">
+    		</td>
+    	</tr>
+    </table>
+  </body>
+</html>

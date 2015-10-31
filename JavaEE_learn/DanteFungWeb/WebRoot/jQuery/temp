@@ -1,0 +1,8 @@
+$.ajax({
+   type: "POST",
+   url: "testServlet",
+   data: {"name":"itcast","location":"guangzhou"},
+   success: function(msg){
+     alert( "Data Saved: " + msg );
+   }
+});

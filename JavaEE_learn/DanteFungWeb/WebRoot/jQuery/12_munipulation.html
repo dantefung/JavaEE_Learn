@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>文档操作处理</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <style type="text/css">
+    	body{
+    		font-family: "Microsoft YaHei"
+    	}
+    	.cGreen{color: #4CA902}
+    	.cPink{color: #ED4A9F}
+    	.cBlue{color: #0092E7}
+    	.cCyan{color: #01A6A2}
+    	.cYellow{color: #DCA112}
+    	.cRed{color: #B7103B}
+    	.cPurple{color: #792F7C}
+    	.cBlack{color: #110F10}
+    	.cOrange{color: #FF4500}
+    	.cGray{color: #A9A9A9}
+    	.hide{display: none;}
+    	span {
+    		float:left;
+    	}
+    	ul li {
+    		width:120px;
+    		float: left;
+    		margin-left: 10px;
+    	}
+    </style>
+    <script type="text/javascript">
+    
+    	$(document).ready(function(){
+    		$("#btn1").click(function()
+    		{
+    			$("ul li").css("width", "220px").append("，你喜欢吗？");
+    			console.log($("ul li"));
+    		});
+    		$("#btn2").click(function()
+    		{
+    			$("<li id='flkf'>法兰克福</li>").appendTo("#ger");
+    		});
+    		$("#btn3").click(function()
+    		{
+    			$("ul li").prepend("你好，");
+    		});
+    		$("#btn4").click(function()
+    		{
+    			$("<li id='berlin'>柏林</li>").prependTo("#ger");
+    		});
+    		$("#btn5").click(function()
+    		{
+    			$("span:contains('城市')").after("<span>列表</span>");
+    		});
+    		$("#btn6").click(function()
+    		{
+    			$("span:contains('城市')").before("<span>请看</span>");
+    		});
+    		$("#btn7").click(function()
+    		{	
+    			$("#usa li").insertAfter("#ger li");
+    		});
+    		$("#btn8").click(function()
+    		{
+    			$("#usa li").insertBefore("#ger li");
+    		});
+    		$("#btn9").click(function()
+    		{
+    			$("ul li").wrap("<span class='cBlue'></span>");
+    		});
+    		$("#btn10").click(function()
+    		{
+    			$("ul li").unwrap("<span class='cBlue'></span>");
+    		});
+    		$("#btn11").click(function()
+    		{
+    			$("#chn li").wrapAll("<span class='cBlue'></span>");
+    		});
+    		$("#btn12").click(function()
+    		{	// F12开发者模式  查看元素可以看到效果
+    			$("#chn li").wrapInner("<span class='cBlue'></span>");
+    		});
+    		$("#btn13").click(function()
+    		{
+    			$("#chn li").replaceWith("<span class='cRed'>city,</span>");
+    		});
+    		$("#btn14").click(function()
+    		{
+    			$("<span class='cOrange'>city,</span>").replaceAll("#usa li ");
+    		});
+    		$("#btn15").click(function()
+    		{
+    			$("#usa").empty();
+    		});
+    		$("#btn16").click(function()
+    		{
+    			$("#ny,#scg").remove();
+    		});
+    		$("#btn17").click(function()
+    		{
+    			$("#usa li").clone().addClass("cGray").appendTo("#ger");
+    		});
+    		
+    	});
+    </script>
+    
+  </head>
+  
+  <body>
+  	<span>中国城市</span>：<br>
+    <ul id="chn">
+    	<li id="bj">北京</li>
+    	<li id="sh">上海</li>
+    	<li id="gz">广州</li>
+    	<li id="sz">深圳</li>
+    	<li id="hk">香港</li>
+    </ul>
+    <br><br>
+    <span>美国城市</span>：<br>
+    <ul id="usa">
+    	<li id="wst">华盛顿特区</li>
+    	<li id="ny">纽约</li>
+    	<li id="la">洛杉矶</li>
+    	<li id="scg">芝加哥</li>
+    </ul>
+    <br><br>
+    <span>德国城市</span>：<br>
+    <ul id="ger">
+    	<li id="mnh">慕尼黑</li>
+    </ul>
+    <div style="clear:both;"></div>
+    <br><br>
+    <hr>
+    <input type="button" id="btn1" value="append()向每个城市(li元素内)追加 ，你喜欢吗？">
+    <input type="button" id="btn2" value="appendTo()向德国追加一个城市 法兰克福">
+    <input type="button" id="btn3" value="prepend()向每个城市(li元素内)追加  你好，">
+    <input type="button" id="btn4" value="prependTo()向德国追加一个城市 柏林">
+    <input type="button" id="btn5" value="after()向xx城市之后追加 列表">
+    <input type="button" id="btn6" value="before()向xx城市之前追加 请看 ">
+    <input type="button" id="btn7" value="insertAfter()将美国的所有城市置入德国的城市之后">
+    <input type="button" id="btn8" value="insertBefore()将美国的所有城市置入德国的城市之前">
+    <input type="button" id="btn9" value="wrap()将每个城市(li元素)用span包裹起来">
+    <input type="button" id="btn10" value="unwrap()将每个城市(li元素)的父元素移除">
+    <input type="button" id="btn11" value="wrapAll()将中国的所有城市(li元素)用一个span包裹起来">
+    <input type="button" id="btn12" value="wrapInner()将中国的所有城市(li元素内)每个城市内容用span包裹起来">
+    <input type="button" id="btn13" value="replaceWith()将中国的所有城市(li元素)替换为span元素">
+    <input type="button" id="btn14" value="replaceAll()将美国的所有城市(li元素)替换为span元素">
+    <input type="button" id="btn15" value="empty()清空美国的所有城市">
+    <input type="button" id="btn16" value="remove()删除美国的纽约和芝加哥两个城市">
+    <input type="button" id="btn17" value="clone()复制美国的城市到德国的城市之后">
+  </body>
+</html>
