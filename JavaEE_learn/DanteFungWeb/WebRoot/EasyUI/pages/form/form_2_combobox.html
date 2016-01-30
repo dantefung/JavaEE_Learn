@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>combobox下拉列表框</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$("#cc").combobox("setValues",["Java","IOS"]);
+			});
+			
+			$("#btn2").click(function(){
+				$("#cc").combobox("clear").combobox("loadData",[{value:".NET",text:".NET"}]);
+			});
+			
+			$('#cc').combobox({
+				groupFormatter: function(group){
+					return '<span style="color:red">' + group + '</span>';
+				}
+			});
+			
+		});
+	</script>
+  </head>
+  
+  <body>
+    <select id="cc" name="dept" style="width:200px;" >  
+	    <option>Java</option>   
+	    <option>PHP</option>   
+	    <option>IOS</option>   
+	    <option>UI</option>   
+	    <option>C</option>   
+	</select> 
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="setValues设置Java和IOS选中">
+	<input id="btn2" type="button" value="loadData重新加载选项数据">
+  </body>
+</html>

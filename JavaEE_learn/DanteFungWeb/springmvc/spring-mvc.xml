@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	">
+	
+	<!-- XML配置方式 -->
+	
+	<!-- 
+		1.配置action，实现Controller接口
+		2.配置映射处理器，用来处理请求与action的映射，可以不用写id
+		3.配置视图解析器，完成ModelAndView的解析
+		缺点：
+		  1.与jsp耦合
+		  2.只支持属性注入，不支持封装对象后注入
+	 -->
+	
+	<!-- A 方式一：name -->
+		
+	 <!-- 声明bean的name,因为使用了 -->
+	 <!-- <bean name="/first.action" class="com.dantefung.springmvc.helloword.controller.FirstAction" /> -->
+	 <!-- 声明BeanNameUrlHandlerMapping,使用名称映射 -->
+	 <!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean> -->
+	 <!-- 支持servlet与jsp视图解析，可进一步处理，此步省略 -->
+	<!--  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	可以加前缀或后缀
+		
+		<property name="prefix" value="/springmvc/"/>
+		<property name="suffix" value=".jsp"/>	
+	
+	 </bean> -->
+	
+	<!-- B 方式二：ID  -->
+	 
+	 
+	<!-- 
+		配置URL与ACTION对象ID进行映射 ,
+		<prop key="second.action">second</prop>,
+		其中key匹配url信息,value为action的ID 
+	-->
+	<!-- B1 -->
+	<bean id="student"  class="com.dantefung.springmvc.abstractcommandcontroller.StudentAction" />	
+	<!-- B2 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="student.action">student</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	<!-- B3.1视图处理器：InternalResourceViewResolver，作为UrlBasedViewResolver的子类， 它支持页面jstl处理. -->
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	可以加前缀或后缀
+		
+		<property name="prefix" value="/springmvc/"/>
+		<property name="suffix" value=".jsp"/>	
+	
+	 </bean> -->
+	 
+	<!-- B3.2视图处理器：UrlBasedViewResolver -->
+	<!-- viewClass不同的配置,可以解析不同的资源-->
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+
+		<property name="prefix" value="/springmvc/"/>
+		<property name="suffix" value=".jsp"/>	
+
+	</bean>	
+	
+	
+	<!-- MultiActionController -->
+	<!-- 配置控制器，并指定通过methodNameResolver方法名调用相关的方法处理相关逻辑  -->
+	<bean id="studentMultiAction" class="com.dantefung.springmvc.multiactioncontroller.StudentMultiAction">
+		<property name="methodNameResolver" ref="parameterMethodNameResolver"></property>	
+	</bean>
+	<!-- 定义通过方法名调用控制器相关方法的规则-->
+	<bean  id="parameterMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+	<!-- 在url中使用"do=方法名",例如：studentMulti.action?do=add,将调用add方法，这里的do不是固定的，可以改变为其他 -->
+	    <property name="paramName" value="do"></property>
+	    <!--如果没有指定方法名，默认调用控制器的list方法  -->
+	    <property name="defaultMethodName" value="list"></property>
+	</bean>
+	<!-- 配置映射处理器-->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="studentMultiAction.action">studentMultiAction</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 配置视图处理器 -->
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView">
+		</property>
+		<property name="prefix" value="/springmvc/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	<!-- ==============================我是分割线=============================  -->
+	
+	<!-- 注解的方式 -->
+	<!-- 
+		DefaultAnnotationHandlerMapping:支持通过url找到相关的action
+		AnnotationMethodHandlerAdapter:支持通过url匹配action定义方法或者子包下面的java文件，
+		如果扫描有@Component @Controller @Service等这些注解类，则把这些类注册为bean
+	 -->
+	 <!-- 用于定位相关的处理类 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	</bean>	 -->
+	<!--  用于定位相关的处理方法-->
+	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean> -->
+	<!-- mvc:annotation-driven，取代了上面的DefaultAnnotationHandlerMapping，AnnotationMethodHandlerAdapter
+		两个Bean的配置	-->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!--  开启注解扫描器：要引入context名称空间-->
+	<context:component-scan base-package="*"></context:component-scan>
+</beans>

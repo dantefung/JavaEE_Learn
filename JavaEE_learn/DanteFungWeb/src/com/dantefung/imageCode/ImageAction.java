@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.dantefung.struts_baseaction.BaseAction;
+import com.dantefung.struts_baseaction.BaseAction1;
 
 /**
  * 生成验证码图片
  * 
  * 
  */
-public class ImageAction extends BaseAction {
+public class ImageAction extends BaseAction1 {
 
 	public String execute()
 	{

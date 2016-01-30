@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>searchbox搜索框</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	p {
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+
+	<script type="text/javascript">
+		
+		function qq(value,name){ 
+			alert(value+":"+name) 
+		} 
+
+		$(document).ready(function(){
+			$('#ss').searchbox({ 
+				searcher:function(value,name){ 
+					alert(value + "," + name) 
+				}, 
+				menu:'#mm', 
+				prompt:'请输入值' 
+			}); 
+			$("#btn1").click(function(){
+				alert($('#ss').searchbox("getValue"));
+			});
+
+			$("#btn2").click(function(){
+				$("#ss").searchbox("setValue","搜索内容");
+			});
+
+			$("#btn3").click(function(){
+				alert($("#ss").searchbox("getName"));
+				// 当前搜索类型名称：all 或 sports
+			});
+
+			$("#btn4").click(function(){
+				// 选择当前的搜索类型为sports
+				$("#ss").searchbox("selectName","sports");
+			});
+
+			$("#btn5").click(function(){
+				// 方法调用，销毁搜索框
+				$("#ss").searchbox("destroy");
+			});
+
+			$("#btn6").click(function(){
+				$("#ss").searchbox("disable");
+			});
+			
+			$("#btn7").click(function(){
+				$("#ss").searchbox("enable");
+			});
+			
+			$("#btn8").click(function(){
+				$("#ss").searchbox("clear");
+			});
+			
+			$("#btn9").click(function(){
+				// input 有默认值得时候，reset方法 类似出厂设置
+				$("#ss").searchbox("reset");			
+			});
+			
+			
+		});
+	</script>
+  </head>
+  
+  <body>
+    <p>HTML标签创建</p>
+     <input id="ss2" class="easyui-searchbox" style="width:300px" 
+			data-options="searcher:qq,prompt:'Please Input Value',menu:'#mm2'"></input> 
+			
+			<div id="mm2" style="width:120px"> 
+			<div data-options="name:'all',iconCls:'icon-ok'">All News</div> 
+			<div data-options="name:'sports',iconCls:'icon-cancel'">Sports News</div> 
+		</div> 
+    <br>
+    <p>JavaScript创建</p>
+    <input id="ss" style="width:300px;" value="我是默认值"></input> 
+		<div id="mm" style="width:120px"> 
+		<div data-options="name:'all',iconCls:'icon-ok'">All News</div> 
+		<div data-options="name:'sports',iconCls:'icon-add'">Sports News</div> 
+	</div>
+	    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="getValue获取搜索值">
+    <input id="btn2" type="button" value="setValue设置搜索值">
+	<input id="btn3" type="button" value="getName获取当前搜索类型名称">
+	<input id="btn4" type="button" value="selectName选择当前搜索类型名称为sport">
+	<input id="btn5" type="button" value="destroy销毁搜索框">
+	<input id="btn6" type="button" value="disable禁用搜索框">
+	<input id="btn7" type="button" value="enable启用搜索框">
+	<input id="btn8" type="button" value="clear清空搜索值">
+	<input id="btn9" type="button" value="reset重置搜索框">
+  </body>
+</html>

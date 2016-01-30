@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>accordion分类</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$("#aa").accordion({multiple:true});
+			});
+			
+			$("#btn2").click(function(){
+				$("#aa").accordion({onSelect:function(title,index){
+					alert("title=" + title + ",index=" + index);
+				}});
+			});
+
+			$("#btn3").click(function(){
+				$("#aa").accordion("select",2);
+			});
+
+			$("#btn4").click(function(){
+				$('#aa').accordion('add', {
+					title: '新标题',
+					content: '新内容',
+					selected: false
+				});
+			});
+			
+			$("#btn5").click(function(){
+				$("#aa").accordion("remove", 1);
+			});
+		});
+	</script>
+  </head>
+  
+  <body>
+    <div id="aa" class="easyui-accordion" style="width:300px;height:200px;">   
+	    <div title="Title1" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;padding:10px;">   
+	        <h3 style="color:#0099FF;">Accordion for jQuery</h3>   
+	        <p>Accordion is a part of easyui framework for jQuery.     
+	        It lets you define your accordion component on web page more easily.</p>   
+	    </div>   
+	    <div title="Title2" data-options="iconCls:'icon-reload'" style="padding:10px;">   
+	        content2    
+	    </div>   
+	    <div title="Title3">   
+	        content3    
+	    </div>   
+	</div> 
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="multiple同时展开多个面板">
+	<input id="btn2" type="button" value="onSelect当选中某个面板时弹出标题和索引号">
+	<input id="btn3" type="button" value="select设置选中第三个面板">
+	<input id="btn4" type="button" value="add新增一个面板">
+	<input id="btn5" type="button" value="remove删除第二个面板">
+  </body>
+</html>

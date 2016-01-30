@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>numberbox数值输入框</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	p {
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#nn").numberbox({    
+			    min:0,    
+			    precision:2    
+			});
+			
+			$("#btn1").click(function(){
+				$("#nn").numberbox({
+					prefix:"￥"
+				});
+			});
+			$("#btn2").click(function(){
+				$("#nn").numberbox({
+					suffix:"人民币"
+				});
+			});
+			$("#btn3").click(function(){
+				$("#nn").numberbox("fix");
+			});
+			
+		});
+	</script>
+  </head>
+  
+  <body>
+    <p>HTML标签创建</p>
+    <input type="text" class="easyui-numberbox" value="100" data-options="min:0,precision:2"></input> 
+    
+    <br>
+    <p>JavaScript创建</p>
+     <input type="text" id="nn"></input> 
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="prefix前面加 ￥">
+	<input id="btn2" type="button" value="suffix后加 人民币">
+	<input id="btn3" type="button" value="fix输入负数后进行修正">
+  </body>
+</html>

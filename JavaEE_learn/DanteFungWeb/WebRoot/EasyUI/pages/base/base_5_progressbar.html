@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>progressbar进度条</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	p {
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+	<script type="text/javascript">
+
+		$('#p').progressbar({ 
+				value: 60 
+			});
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$("#p").progressbar("setValue",80);
+				alert($("#p").progressbar("getValue"));
+			});
+
+			$("#btn2").click(function(){
+				$("#p").progressbar({
+					onChange:function(newValue, oldValue){
+						alert("新值为："+ newValue + "旧值为：" + oldValue);
+					}
+				});
+			});
+			
+		});
+	</script>
+  </head>
+  
+  <body>
+    <p>HTML标签创建</p>
+    <div class="easyui-progressbar" data-options="value:60" style="width:400px;"></div>
+    
+    <br>
+    <p>JavaScript创建</p>
+    <div id="p" style="width:400px;"></div> 
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="getValue/setValue获取当前值和设置一个新的值80">
+    <input id="btn2" type="button" value="onChange当值发生时控制台输出新值和旧值">
+  </body>
+</html>

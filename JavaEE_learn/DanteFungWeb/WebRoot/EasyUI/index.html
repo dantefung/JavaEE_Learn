@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>传智播客管理系统</title>
+	<link id="themeUrl" rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css">
+	<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+		body{
+			font-family: "Microsoft YaHei"
+		}
+		#menu ul {
+			list-style: none;
+			padding: 0px;
+			margin: 0px;
+		}
+		#menu ul li{
+			border-bottom: solid 1px #fff;
+		}
+		#menu ul li a{
+			display:block;/*将行级元素转为块级元素*/
+			text-decoration: none;
+			background-color: #0A2C51;
+			color: #fff;
+			padding:5px;
+		}
+		#menu ul li a:hover{
+			background-color: #1C8CEC;
+		}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			//注册功能菜单的点击事件
+			$("a[name]").click(function(){
+				var sTitle = $(this).text();//选项卡的标题
+				
+				if($("#tt").tabs("exists", sTitle)){
+					//存在选项卡，则打开选项卡即可
+					$("#tt").tabs("select", sTitle);
+				} else {
+					var linkUrl = $(this).attr("name");//跳转地址
+					var opts = {
+							title:sTitle,
+							content:sTitle + "的内容",
+							closable:true
+						};
+					if(linkUrl != ""){
+						//说明需要跳转到某个链接地址的
+						opts = {
+								title:sTitle,
+								//href只加载页面的body部分内容，之前的内容是不会加载的(如：javascript和css和*.js文件)
+								//href:linkUrl,
+								content:'<iframe src="' + linkUrl + '" frameBorder="0" width="100%" height="100%"></iframe>',
+								closable:true
+						};
+					}
+					//不存在选项卡，则根据标题创建选项卡
+					$("#tt").tabs("add", opts);
+				}
+			});
+			
+			//注册主题选择触发事件
+			$("#theme").combobox({
+				width:150,
+				onSelect:function(record){
+					//改变系统主题
+					$("#themeUrl").attr("href","js/easyui/themes/" + record.text + "/easyui.css");
+				}
+			});
+		});
+	</script>
+  </head>
+  
+  <body>
+  
+    <div id="cc" class="easyui-layout" data-options="fit:true">   
+    	<!-- 顶部开始 -->
+	    <div data-options="region:'north',split:true" style="height:100px;">
+	    	<h2>传智播客管理系统</h2>
+	    	<div style="width:100%;text-align: right">
+	    		<select id="theme" class="easyui-combobox">
+	    			<option>default</option>
+	    			<option>black</option>
+	    			<option>bootstrap</option>
+	    			<option>gray</option>
+	    			<option>metro</option>
+	    		</select>&nbsp;&nbsp;
+	    	</div>
+	    </div>  
+	    <!-- 顶部结束 -->
+	    
+	    <!-- 底部开始 --> 
+	    <div data-options="region:'south',split:true" style="height:30px;text-align: center">
+	    	2015 版权所有 © 传智播客
+	    </div>   
+	    <!-- 底部结束 -->
+	    
+	    <!-- 左边菜单开始 -->
+	    <div data-options="region:'west',title:'功能菜单',split:true" style="width:200px;border:0px;">
+	    	  <div id="menu" class="easyui-accordion" data-options="fit:true" >   
+			    <div title="人员管理" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;">   
+	             	<ul>
+			    		<li><a href="#" name="user_list.html">人员列表</a></li>
+			    		<li><a href="#" name="pages/form/form_8_example.html">人员编辑</a></li>
+			    		<li><a href="#" name="">人员统计</a></li>
+			    	</ul>  
+			    </div>   
+			    <div title="角色管理" data-options="iconCls:'icon-reload'" style="padding:10px;">   
+			        content2    
+			    </div>   
+			    <div title="权限管理">   
+			        content3    
+			    </div>   
+			</div>
+	    </div>   
+	    <!-- 左边菜单结束 -->
+	    
+	    <!-- 中区开始 -->
+	    <div data-options="region:'center'" style="background:#eee;border:0px;">
+	    	<div id="tt" class="easyui-tabs" data-options="fit:true">   
+			    <div title="欢迎页" style="padding:20px;">   
+			        <h2>欢迎使用系统！</h2>    
+			    </div>   
+			</div>
+	    </div>   
+	    <!-- 中区结束 -->
+	</div> 
+    <div id="win"></div>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>panel面板</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	.pCls{
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#p").panel({
+				iconCls:"icon-save",
+				closable:true,    
+	            width:500,
+	            height:150,
+	            padding:10,
+	            title: 'My Panel',  
+			    //加载内容时显示的提示信息
+			    loadingMessage:"正在加载数据...",
+			    //在顶部添加自定义工具菜单
+			    tools: [{    
+			      iconCls:'icon-add',    
+			      handler:function(){alert('new')}    
+			    },{    
+			      iconCls:'icon-save',    
+			      handler:function(){alert('save')}    
+			   }]    
+			});
+
+			$("#btn1").click(function(){
+				$("#p").panel({
+					//加载远程端的内容
+					href: "layout_content.html"
+				});
+			});
+			$("#btn2").click(function(){
+				$('#p').panel({
+					// 测试，先点击btn2,然后点击btn1
+					onLoad:function(){
+						alert("加载完了！！");
+					}
+				});
+			});
+			$("#btn3").click(function(){
+				$("#p").panel({
+					collapsible:true,
+					onCollapse:function(){
+						  alert("onCollapse折叠面板。");
+					}
+				});
+			});
+			$("#btn4").click(function(){
+				$("#p").panel({
+					collapsible:true,
+					onExpand:function(){
+						  alert("onExpand展开面板");
+					}
+				});
+			});
+			$("#btn5").click(function(){
+				$('#p').panel("setTitle","设置面板标题");
+			});
+			$("#btn6").click(function(){
+				$('#p').panel("clear");
+			});
+			$("#btn7").click(function(){
+				$('#p').panel("refresh","layout_content.html");
+			});
+		});
+	</script>
+  </head>
+  
+  <body>
+    <p class="pCls">HTML标签创建</p>
+     <div class="easyui-panel" title="My Panel"     
+        style="width:500px;height:150px;padding:10px;background:#fafafa;"   
+        data-options="iconCls:'icon-save',closable:true,    
+	                collapsible:true,minimizable:true,maximizable:true">   
+	    <p>panel content.</p>   
+	    <p>panel content.</p>   
+	</div>     
+    
+    <br>
+    <p class="pCls">JavaScript创建</p>
+     <div id="p" style="padding:10px;">    
+	    <p>panel content.</p>    
+	    <p>panel content.</p>    
+	</div> 
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="href加载页面内容">
+	<input id="btn2" type="button" value="onLoad加载完内容后提示">
+	<input id="btn3" type="button" value="onCollapse收缩后提示">
+	<input id="btn4" type="button" value="onExpand拓展开后提示">
+	<input id="btn5" type="button" value="setTitle设置面板标题">
+	<input id="btn6" type="button" value="clear清空面板内容">
+	<input id="btn7" type="button" value="refresh刷新面板内容源于其它页面">
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>messager消息窗口</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$.messager.alert("信息标题","Dante的内容","warning");
+			});
+
+			$("#btn2").click(function(){
+				$.messager.confirm('确认','您确认想要删除记录吗？',function(r){    
+				    if (r){    
+				        alert('确认删除');    
+				    }    
+				});
+			});
+
+
+			$("#btn3").click(function(){
+				$.messager.prompt('提示信息', '请输入你的姓名：', function(r){
+					if (r){
+						alert('你的姓名是：' + r);
+					}
+				});
+			});
+
+			$("#btn4").click(function(){
+				$.messager.show({
+					title:'我的消息',
+					msg:'消息将在3秒后关闭。',
+					timeout:3000,
+					showType:'slide'
+				});
+			});
+
+			$("#btn5").click(function(){
+				//打开进度条
+				//$.messager.progress(); 
+				//在3秒后关闭
+				/*setTimeout(function(){
+					//关闭进度条
+					$.messager.progress("close");
+				},3000);*/
+				setInterval(function(){
+					$.messager.progress(); 
+					setTimeout(function(){
+						//关闭进度条
+						$.messager.progress("close");
+					},3000);
+				},5000);
+			});
+
+		});
+	</script>
+  </head>
+  
+  <body>
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="alert警告窗口">
+	<input id="btn2" type="button" value="confirm确认窗口">
+	<input id="btn3" type="button" value="prompt输入窗口">
+	<input id="btn4" type="button" value="show消息窗口">
+	<input id="btn5" type="button" value="progress打开进度消息窗口并在3秒（setTimeout）后关闭">
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>datebox、datetimerbox日期时间输入框</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	p {
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$("#dtb").datetimebox({
+					formatter:function(date){
+						return date.getFullYear() + "/" + (date.getMonth()+1) + "/" + date.getDate()
+						+ " " + date.getHours() + ":" + date.getMinutes(); 
+					}
+				});
+			});
+			
+			$("#btn2").click(function(){
+				$("#dtb").datetimebox({
+					onSelect:function(date){
+						alert(date.getFullYear() + "/" + (date.getMonth()+1) + "/" + date.getDate()
+						+ " " + date.getHours() + ":" + date.getMinutes());
+					}
+				});
+			});
+		});
+	</script>
+  </head>
+  
+  <body>
+    <p>日期组件</p>
+    <input  id="dd"  type= "text" class= "easyui-datebox" required ="required"> </input>
+    
+    <br>
+    <p>日期时间组件</p>
+     <input id="dtb" class="easyui-datetimebox" name="birthday"     
+        data-options="required:true,showSeconds:false" value="2015-11-14 2:3" style="width:150px">   
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="formatter格式化日期时间组件的返回值为yyyy/MM/dd HH:mm">
+	<input id="btn2" type="button" value="onSelect当选择日期后弹出具体的日期">
+  </body>
+</html>

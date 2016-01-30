@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 通过别名简化对类的使用 -->
+	<typeAliases>
+		<!-- <typeAlias type="com.dantefung.mybatis_2one.Dept" alias="Dept" /> -->
+		<package name="com.dantefung.mybatis_2one.entity"/>
+	</typeAliases>
+
+
+	<!-- 这里可以配置多个数据源环境，default指定默认使用的数据源 -->
+	<environments default="development">
+		<!-- 配置数据源环境 -->
+		<environment id="development">
+			<!-- 配置事务管理，type为JDBC是表示事务依赖JDBC管事，type为MANAGED时表示事务依赖容器管理 -->
+			<transactionManager type="JDBC" />
+			<!-- type为POOLED表示使用连接池，type为UNPOOLED表示不使用连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=UTF-8" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 配置sql映射文件信息 -->
+	<mappers>
+		<mapper resource="com/dantefung/mybatis_2one/entity/DeptMapper.xml" />
+		<mapper resource="com/dantefung/mybatis_2one/entity/EmpMapper.xml" />
+		<mapper resource="com/dantefung/mybatis_2many/entity/EmpMapper.xml" />
+		<mapper resource="com/dantefung/mybatis_2many/entity/DeptMapper.xml" />
+		<mapper resource="com/dantefung/mybatis_bidirection_association/entity/DeptMapper.xml" />
+		<mapper resource="com/dantefung/mybatis_bidirection_association/entity/EmpMapper.xml" />
+	</mappers>
+</configuration>

@@ -3,6 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="JunitTest"/>
 	<classpathentry kind="src" path="sql"/>
+	<classpathentry kind="src" path="mybatis"/>
+	<classpathentry kind="src" path="springmvc"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
@@ -34,6 +36,26 @@
 	<classpathentry kind="lib" path="poi-lib/poi-ooxml-schemas-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="poi-lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="poi-lib/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="myBatis3.2.2_lib/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="myBatis3.2.2_lib/cglib-2.2.2.jar"/>
+	<classpathentry kind="lib" path="myBatis3.2.2_lib/javassist-3.17.1-GA.jar"/>
+	<classpathentry kind="lib" path="myBatis3.2.2_lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="myBatis3.2.2_lib/mybatis-3.2.2.jar"/>
+	<classpathentry kind="lib" path="myBatis3.2.2_lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="myBatis3.2.2_lib/slf4j-log4j12-1.7.5.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-aop/com.springsource.net.sf.cglib-2.2.0.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-aop/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-aop/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-aop/spring-aop-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-core/asm-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-core/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-core/spring-beans-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-core/spring-context-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-core/spring-core-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-core/spring-expression-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-core/spring-test-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-web/spring-web-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-3.2-web/spring-webmvc-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="hibernate_lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="hibernate_lib/c3p0-0.9.1.jar"/>

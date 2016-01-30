@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>combotree树形下拉框</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				var t = $('#cc').combotree('tree');
+				t.tree({
+					onClick:function(node){
+						alert("id=" + node.id + ",text=" + node.text);
+					}
+				});
+			});
+		});
+	</script>
+  </head>
+  
+  <body>
+    <select id="cc" class="easyui-combotree" style="width:200px;"   
+        data-options="url:'tree_data1.json',required:true"></select> 
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="tree获取被选中的节点的id和显示值（利用tree_data1.json）">
+  </body>
+</html>

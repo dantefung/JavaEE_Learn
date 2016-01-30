@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>draggable拖动</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css"
+	href="../../js/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../js/easyui/themes/icon.css">
+<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="../../js/easyui/jquery.easyui.min.js"></script>
+<style type="text/css">
+body {
+	font-family: "Microsoft YaHei";
+}
+
+p {
+	color: white;
+	background-color: #0092E7;
+}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		//将选中的容器变成可拖动的组件，拖动范围为#title容器对应的区域
+		$('#dd').draggable({ 
+			handle:'#title'
+		}); 
+
+		$("#btn1").click(function() {
+			$('#dd').draggable({ 
+				onDrag:function(e){
+					console.log("pageX" + e.pageX + "  pageY" + e.pageY);
+				}
+			}); 
+		});
+		$("#btn2").click(function() {
+			$("#dd").draggable({
+				onStopDrag:function(e){
+					console.log("pageX" + e.pageX + "  pageY" + e.pageY);
+				}
+			});
+		});
+		$("#btn3").click(function() {
+			$("#dd").draggable("disable");
+		});
+		$("#btn4").click(function() {
+			$("#dd").draggable("enable");
+		});
+	});
+</script>
+</head>
+
+<body>
+	<p>HTML标签创建</p>
+	<div class="easyui-draggable" data-options="handle:'#title'"
+		style="width:100px;height:100px;border:solid 1px;">
+		<div id="title" style="background:#ccc;">title</div>
+	</div>
+	<br>
+	<p>JavaScript创建</p>
+	<div id="dd" style="width:100px;height:100px;border:solid 1px;">
+		<div id="title" style="background:#ccc;">title</div>
+	</div>
+	<br>
+	<hr>
+	<input id="btn1" type="button" value="onDrag拖动过程中输出当前的坐标">
+	<input id="btn2" type="button" value="onStopDrag拖动停止时弹出信息">
+	<input id="btn3" type="button" value="disable禁止拖动">
+	<input id="btn4" type="button" value="enable允许拖动">
+</body>
+</html>

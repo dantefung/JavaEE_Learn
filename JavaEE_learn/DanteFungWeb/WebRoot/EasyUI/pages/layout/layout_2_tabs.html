@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>tabs选项卡</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	p {
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$("#tt").tabs({fit:true});
+			});
+
+			//onSelect选择选项卡后弹出选项卡标题
+			$("#btn2").click(function(){
+				$("#tt").tabs({
+					onSelect:function(title,index){
+						alert("选项卡的标题为：" + title +",索引号为：" + index);
+					}
+				});
+			});
+
+			// onBeforeClose在关闭选项卡之前确认是否关闭
+			$("#btn3").click(function(){
+				$("#tt").tabs({
+					onBeforeClose:function(title,index){
+						alert("onBeforeClose:选项卡的标题为：" + title +",索引号为：" + index);
+					}
+				});
+			});
+
+			$("#btn4").click(function(){
+				$("#tt").tabs("add",{
+					//// 添加一个未选中状态的选项卡面板
+					title:"新增选项卡",
+					selected:false
+				});
+			});
+
+			$("#btn5").click(function(){
+				$("#tt").tabs("close",1);
+			});
+
+			$("#btn6").click(function(){
+				//找到选中选项卡
+				var tab = $('#tt').tabs('getSelected');
+				//找到选项卡对应的索引号
+				var index = $('#tt').tabs('getTabIndex',tab);
+				alert(index);
+			});
+
+			$("#btn7").click(function(){
+				$("#tt").tabs("select",1);
+			});
+
+			$("#btn8").click(function(){
+				if(!$("#tt").tabs("exists","Dante"))
+				{
+					$("#tt").tabs("add",{
+						title:"Dante",
+						conten:"Dante  Fung",
+						closable:true
+					});
+				}
+				else
+				{
+					$("#tt").tabs("select","Dante");
+				}
+			});
+
+			$("#btn9").click(function(){
+				$("#tt").tabs("disableTab",1);
+			});
+		});
+	</script>
+  </head>
+  
+  <body>
+    <div id="tt" class="easyui-tabs" style="width:500px;height:250px;">   
+	    <div title="Tab1" style="padding:20px;">   
+	        tab1    
+	    </div>   
+	    <div title="Tab2" data-options="closable:true" style="overflow:auto;padding:20px;">   
+	        tab2    
+	    </div>   
+	    <div title="Tab3" data-options="iconCls:'icon-reload',closable:true" style="padding:20px;">   
+	        tab3    
+	    </div>   
+	</div>    
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="fit大小调整到父容器大小">
+    <input id="btn2" type="button" value="onSelect选择选项卡后弹出选项卡标题">
+	<input id="btn3" type="button" value="onBeforeClose在关闭选项卡之前确认是否关闭">
+	<input id="btn4" type="button" value="add新增选项卡">
+	<input id="btn5" type="button" value="close关闭第二个选项卡">
+	<input id="btn6" type="button" value="getSelected/getTabIndex获取当前选中选项卡的索引号">
+	<input id="btn7" type="button" value="select选择第二个选项卡">
+	<input id="btn8" type="button" value="add/exists新增选项卡，如果已经存在则打开">
+	<input id="btn9" type="button" value="disableTab禁用第二个选项卡">
+  </body>
+</html>

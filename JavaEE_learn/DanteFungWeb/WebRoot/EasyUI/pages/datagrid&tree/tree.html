@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>tree树</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	.titleCls {
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$('#tt').tree({    
+			    url:'tree_data1.json',
+			    checkbox:true,
+			    //onlyLeafCheck:true
+			    formatter:function(node){
+							if(node.text != "Java"){
+								return node.text;
+							}
+							else{
+								return "<a href='#'>"+node.text+"</a>";
+							}
+				},
+				onClick:function(node){
+					alert(node.text);
+				},
+				onSelect:function(node){
+					alert(node.text);
+				},
+				onCheck:function(node){
+					alert(node.text);
+				}
+			});  
+			
+			$("#btn1").click(function(){
+				alert($("#tt").tree("getRoot").text);	
+			});		
+			
+			$("#btn2").click(function(){
+				$("#tt").tree({
+					onClick:function(node){
+						if(node.text == "Java"){
+							alert($("#tt").tree("getParent",node.target).text);	
+						}
+					}
+				});
+			});
+			
+			$("#btn3").click(function(){
+				$("#tt").tree({
+					onClick:function(node){
+						if(node.text == "Program Files"){
+							var nodes = $("#tt").tree("getChildren",node.target);
+							$.each($(nodes),function(index, node){
+								// 返回的node已经是js对象了
+								alert(node.text);
+							});
+						}	
+					}
+				});
+			});
+			
+			$("#btn4").click(function(){
+				var checkedNodes = $("#tt").tree("getChecked");
+				$.each($(checkedNodes),function(index, node){
+					// 返回的node已经是js对象了
+					alert(node.text);
+				});
+			});	
+			
+			$("#btn5").click(function(){
+				var nodes = $("#tt").tree("getChecked", "unchecked");
+		    	for(var i = 0; i < nodes.length; i++){
+		    		console.log("没有被勾选的节点：" + nodes[i].text);
+		    	}
+			});	
+			
+			$("#btn6").click(function(){
+				var indeterminateNodes = $("#tt").tree("getChecked","indeterminate");
+				$.each($(indeterminateNodes),function(index, node){
+					// 返回的node已经是easyui对象了
+					console.log("处于半选中状态的节点为：" + node.text);
+				});
+			});
+			
+			$("#btn7").click(function(){
+				var node = $("#tt").tree("find",11);
+				if($("#tt").tree("isLeaf",node.target) == false){
+					$("#tt").tree("expand",node.target);
+					$("#tt").tree("check",$("#tt").tree("getChildren",node.target)[1].target);
+				}
+			});
+			
+		});
+	</script>
+  </head>
+  
+  <body>
+    <p class="titleCls">HTML标签创建</p>
+    <ul class="easyui-tree">   
+    <li>   
+        <span>Folder</span>   
+        <ul>   
+            <li>   
+                <span>Sub Folder 1</span>   
+                <ul>   
+                    <li>   
+                        <span><a href="#">File 11</a></span>   
+                    </li>   
+                    <li>   
+                        <span>File 12</span>   
+                    </li>   
+                    <li>   
+                        <span>File 13</span>   
+                    </li>   
+                </ul>   
+            </li>   
+            <li>   
+                <span>File 2</span>   
+            </li>   
+            <li>   
+                <span>File 3</span>   
+            </li>   
+        </ul>   
+    </li>   
+    <li>   
+        <span>File21</span>   
+    </li>   
+</ul>  
+ 
+    
+    <br>
+    <p class="titleCls">JavaScript创建</p>
+    <ul id="tt"></ul>
+    
+    <br>
+    <hr>
+    <p>checkbox、onlyLeafCheck在每个节点添加复选框、只有叶子节点添加复选框</p>
+    <p>formatter 格式化节点的显示内容，将包含有Java内容的节点，添加链接</p>
+    <p>onClick 点击了节点后弹出节点信息</p>
+    <p>onSelect 选择了节点后弹出信息（类似onClick）</p>
+    <p>onCheck 点击了节点前面的复选框的时候触发弹出是否选中</p>
+    <input id="btn1" type="button" value="getRoot 获取树的根节点（可指定参数（dom类型）也可不指定）">
+	<input id="btn2" type="button" value="getParent 点击Java后获取Java节点的父节点">
+	<input id="btn3" type="button" value="getChildren 点击Program Files后获取其所有子节点">
+	<input id="btn4" type="button" value="getChecked 获取所有被选中的节点">
+	<input id="btn5" type="button" value="getChecked 获取所有未被选中(unchecked)的节点">
+	<input id="btn6" type="button" value="getChecked 获取所有不确定(indeterminate，当onlyLeafCheck为false时才有效)的节点">
+	<input id="btn7" type="button" value="find 查找节点id为11的节点如果是非叶子节点则展开并选中第二个其子节点">
+  </body>
+</html>

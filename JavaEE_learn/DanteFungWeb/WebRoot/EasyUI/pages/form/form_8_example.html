@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>form表单</title>
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$('#ff').form('load',{
+					name:'管理员',
+					email:'admin@itcast.cn',
+					workage:2,
+					gender:1
+				});
+			});
+			$("#btn2").click(function(){
+				$('#ff').form("clear");
+			});
+			$("#btn3").click(function(){
+				$('#ff').form("reset");
+			});
+		});
+		//如是从_user_list.html中打开的，在编辑完后需要刷新首页的人员列表的话可使用：
+		parent.$("iframe").get(0).contentWindow.$("#dg").datagrid("reload");
+	</script>
+  </head>
+  
+  <body>
+  <div style="width:100%;text-align: center">
+  <h2>人员编辑</h2>
+    <form id="ff">
+    	<table align="center" cellpadding="0" cellspacing="0" style="width:80%">
+    		<tr>
+    			<td align="right">姓名（validatebox）：</td>
+    			<td><input type="text" name="name" class="easyui-validatebox" data-options="required:true"></td>
+    		</tr>
+    		<tr>
+    			<td align="right">电子邮箱（validatebox）：</td>
+    			<td><input type="text" name="email" class="easyui-validatebox" data-options="required:true,validType:'email'"></td>
+    		</tr>
+    		<tr>
+    			<td align="right">工龄（numberspinner）：</td>
+    			<td>
+    				<input name="workage" id="ns" class="easyui-numberspinner" style="width:80px;"   
+        				required="required" data-options="min:0,max:50,editable:false">
+    			</td>
+    		</tr>
+    		<tr>
+    			<td align="right">性别（combobox）：</td>
+    			<td>
+    				<select name="gender" class="easyui-combobox">
+    					<option>请选择</option>
+    					<option value="1">男</option>
+    					<option value="0">女</option>
+    				</select>
+    			</td>
+    		</tr>
+    		<tr>
+    			<td align="right">生日（datebox）：</td>
+    			<td><input type="text" name="birthday" class="easyui-datebox" data-options="editable:false"></td>
+    		</tr>
+    		
+    	</table>
+    	<br><br>
+    	<a id="btn1" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" style="margin-right:20px;">提交</a>
+    	<a id="btn2" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">撤销</a>
+    </form>
+    </div>
+  </body>
+</html>

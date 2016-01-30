@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>tooltip提示框</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<style type="text/css">
+	body{
+		font-family: "Microsoft YaHei";
+	}
+	p {
+		color: white;
+		background-color: #0092E7;
+	}
+	</style>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+
+			$("#dd").tooltip({    
+				position: 'right',    
+				content: '<span style="color:#fff">This is the tooltip message.</span>',    
+				onShow: function(){        
+					$(this).tooltip('tip').css({            
+						backgroundColor: '#666',            
+						borderColor: '#666'        
+					});    
+				}
+			});
+
+			$("#btn1").click(function(){
+				$("#dd").tooltip({
+				    // 当光标扫过，提示消失后，就执行该回调方法
+					onHide:function(e){
+						console.log("隐藏了");
+						alert("隐藏了提示框！");
+					}
+				});
+			});
+
+			$("#btn2").click(function(){
+				$("#dd").tooltip("update","新提示内容");
+			});
+
+			$("#btn3").click(function(){
+				$("#dd").tooltip("destroy");
+			});
+			
+		});
+	</script>
+  </head>
+  
+  <body>
+    <p>HTML标签创建</p>
+    <a href="#" title="This is the tooltip message." class="easyui-tooltip">Hover me</a> 
+    
+    <br>
+    <p>JavaScript创建</p>
+    <a id="dd" href="javascript:void(0)">Click here</a>
+    
+    <br>
+    <hr>
+    <input id="btn1" type="button" value="onHide隐藏时控制台输出信息">
+	<input id="btn2" type="button" value="update更新提示框的内容">
+	<input id="btn3" type="button" value="destroy销毁提示框">
+  </body>
+</html>
