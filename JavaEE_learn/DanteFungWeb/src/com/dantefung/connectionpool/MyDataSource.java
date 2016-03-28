@@ -1,4 +1,4 @@
-package gz.itcast.a_pool;
+package com.dantefung.connectionpool;
 
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationHandler;
@@ -7,7 +7,9 @@ import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 //模拟连接池的原理（实现DataSource接口）
@@ -146,6 +148,14 @@ public class MyDataSource implements DataSource{
 	@Override
 	public Connection getConnection(String username, String password)
 			throws SQLException {
+		return null;
+	}
+
+	@Override
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException
+	{
+		
+		// TODO Auto-generated method stub
 		return null;
 	}
 

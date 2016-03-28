@@ -56,6 +56,10 @@
 	<classpathentry kind="lib" path="spring-3.2-core/spring-test-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="spring-3.2-web/spring-web-3.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="spring-3.2-web/spring-webmvc-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="mail_lib/mail.jar"/>
+	<classpathentry kind="lib" path="jxl-lib/jxl.jar"/>
+	<classpathentry kind="lib" path="dbUtils_lib/c3p0-0.9.2-pre1.jar"/>
+	<classpathentry kind="lib" path="dbUtils_lib/commons-dbutils-1.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="hibernate_lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="hibernate_lib/c3p0-0.9.1.jar"/>

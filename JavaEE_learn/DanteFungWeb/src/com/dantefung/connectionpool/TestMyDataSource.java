@@ -1,4 +1,4 @@
-package gz.itcast.a_pool;
+package com.dantefung.connectionpool;
 
 import java.sql.Connection;
 import java.sql.SQLException;

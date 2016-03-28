@@ -1,4 +1,4 @@
-package gz.itcast.a_pool;
+package com.dantefung.connectionpool;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -18,6 +18,7 @@ import java.sql.Struct;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 //Connection的静态代理类
 public class MyConnection implements Connection {
 	//存储真实的Connection对象
@@ -337,6 +338,47 @@ public class MyConnection implements Connection {
 			throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setSchema(String schema) throws SQLException
+	{
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getSchema() throws SQLException
+	{
+		
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void abort(Executor executor) throws SQLException
+	{
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setNetworkTimeout(Executor executor, int milliseconds)
+			throws SQLException
+	{
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getNetworkTimeout() throws SQLException
+	{
+		
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
